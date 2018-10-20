@@ -3,7 +3,7 @@ import React from 'react';
 class App extends React.Component {
   render() {
     return (
-      <div>Hell yea I work!</div>
+      <h1>Hell yea I work!</h1>
     );
   }
 }
