@@ -49,16 +49,16 @@ const Navbar = props => {
               className={classnames(classes.links, classes.rigthMargin)}
               to="/"
             >
-              <Typography variant="h5">Home</Typography>
+              <Typography variant="h6">Home</Typography>
             </Link>
             <Link
               className={classnames(classes.links, classes.rigthMargin)}
               to="/about"
             >
-              <Typography variant="h5">About</Typography>
+              <Typography variant="h6">About</Typography>
             </Link>
             <Link className={classes.links} to="/contact">
-              <Typography variant="h5">Contact</Typography>
+              <Typography variant="h6">Contact</Typography>
             </Link>
           </Grid>
         </Grid>

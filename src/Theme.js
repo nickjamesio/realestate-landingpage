@@ -9,13 +9,16 @@ const Theme = createMuiTheme({
   //     main: blue[800],
   //   },
   // },
-  // overrides: {
-  //   MuiTypography: {
-  //     colorPrimary: {
-  //       color: '#5A5A5A',
-  //     },
-  //   },
-  // },
+  overrides: {
+    MuiTypography: {
+      colorPrimary: {
+        color: '#000000',
+      },
+      colorSecondary: {
+        color: '#ffffff'
+      }
+    },
+  },
   appWidth: {
     width: '100%',
     maxWidth: 1280,

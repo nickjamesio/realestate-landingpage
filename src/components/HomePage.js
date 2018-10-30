@@ -13,7 +13,6 @@ const styles = theme => ({
     backgroundImage: `url(${Background})`,
     backgroundPosition: 'center',
     backgroundSize: 'cover',
-    // backgroundAttachment: 'fixed'
     backgroundRepeat: 'no-repeat'
   },
   realtorContainer: {
