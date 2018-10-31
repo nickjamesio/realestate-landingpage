@@ -15,7 +15,10 @@ import SelectField from "./SelectField";
 
 const headerStyles = theme => ({
   root: {
-    marginBottom: "3em"
+    marginBottom: "1em",
+    [theme.breakpoints.up('md')]: {
+      marginBottom: "3em"
+    }
   },
   uppercase: {
     textTransform: "uppercase"
@@ -49,14 +52,17 @@ const CardHeader = withStyles(headerStyles)(({ classes }) => (
   </Grid>
 ));
 
-const formStyles = {
+const formStyles = theme => ({
   root: {
     display: "flex",
     flexDirection: "column",
     width: "100%"
   },
   bottomBuffer: {
-    marginBottom: "2em"
+    marginBottom: "1.5em",
+    [theme.breakpoints.up('md')]: {
+      marginBottom: "2em"
+    },
   },
   selectField: {
     backgroundColor: "white",
@@ -74,7 +80,8 @@ const formStyles = {
     backgroundColor: "red",
     height: "4em"
   }
-};
+});
+
 const CardForm = withStyles(formStyles)(
   class extends Component {
     constructor(props) {
@@ -181,7 +188,7 @@ const CardForm = withStyles(formStyles)(
           </Grid>
           <Button className={classes.submit} type="submit" variant="contained">
             <Typography variant="h6" color="secondary">
-              Contact
+              Sign Up
             </Typography>
           </Button>
         </form>
@@ -190,15 +197,18 @@ const CardForm = withStyles(formStyles)(
   }
 );
 
-const styles = {
+const styles = theme => ({
   root: {
     height: "100%",
-    width: 400,
+    width: '100%',
     backgroundColor: "rgba(1,1,1,.6)",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    [theme.breakpoints.up('md')]: {
+      width: '400px'
+    }
   },
   content: {
     display: "flex",
@@ -206,7 +216,7 @@ const styles = {
     alignItems: "center",
     width: "80%"
   }
-};
+});
 
 const ContactCard = props => {
   const { classes } = props;

@@ -10,11 +10,14 @@ const styles = theme => ({
     // width: '100%',
   },
   background: {
-    height: "700px",
+    height: "550px",
     backgroundImage: `url(${Background})`,
     backgroundPosition: "center",
     backgroundSize: "cover",
-    backgroundRepeat: "no-repeat"
+    backgroundRepeat: "no-repeat",
+    [theme.breakpoints.up('md')]: {
+      height: "700px",
+    }
   },
   realtorContainer: {
     height: "90%",
@@ -49,7 +52,7 @@ class HomePage extends Component {
           <Grid
             item
             container
-            justify={ isWidthDown('md', width) ? "center" : "space-between"}
+            justify={ isWidthDown('sm', width) ? "center" : "space-between"}
             className={classes.content}
           >
             <Hidden smDown>

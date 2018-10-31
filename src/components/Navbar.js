@@ -3,14 +3,36 @@ import PropTypes from "prop-types";
 import {
   AppBar,
   Grid,
+  Hidden,
   Toolbar,
   Typography,
   withStyles
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import classnames from "classnames";
+import Logo from "./Logo";
+import HamburgerMenuButton from "./HamburgerMenuButton";
+import BetterHomes from "../assets/images/BetterHomes.png";
 
-const styles = theme => ({
+const menuList = [
+  {
+    path: "/#home",
+    label: "Home"
+  },
+  {
+    path: "/#reviews",
+    label: "Reviews"
+  },
+  {
+    path: "/#about",
+    label: "About"
+  },
+  {
+    path: "/#contact",
+    label: "Contact"
+  }
+];
+
+const navStyles = theme => ({
   appWidth: {
     ...theme.appWidth
   },
@@ -18,11 +40,16 @@ const styles = theme => ({
     backgroundColor: "white",
     color: theme.palette.primary.contrastText
   },
-  rigthMargin: {
-    marginRight: theme.spacing.unit * 5
+  linkContainer: {
+    display: "flex",
+    alignItems: "center"
   },
-  links: {
-    textDecoration: "none"
+  link: {
+    textDecoration: "none",
+    marginRight: theme.spacing.unit * 5,
+    "&:last-child": {
+      marginRight: 0
+    }
   }
 });
 
@@ -43,23 +70,23 @@ const Navbar = props => {
             container
             className={classes.appWidth}
             direction="row"
-            justify="flex-end"
+            justify="space-between"
           >
-            <Link
-              className={classnames(classes.links, classes.rigthMargin)}
-              to="/"
-            >
-              <Typography variant="h6">Home</Typography>
-            </Link>
-            <Link
-              className={classnames(classes.links, classes.rigthMargin)}
-              to="/about"
-            >
-              <Typography variant="h6">About</Typography>
-            </Link>
-            <Link className={classes.links} to="/contact">
-              <Typography variant="h6">Contact</Typography>
-            </Link>
+            <Grid item>
+              <Logo src={BetterHomes} />
+            </Grid>
+            <Hidden implementation='css' smDown>
+              <div className={classes.linkContainer}>
+                {menuList.map(link => (
+                  <Link key={link.path} className={classes.link} to={link.path}>
+                    <Typography variant="h6">{link.label}</Typography>
+                  </Link>
+                ))}
+              </div>
+            </Hidden>
+            <Hidden implementation='css' mdUp>
+                <HamburgerMenuButton menuList={menuList} />
+            </Hidden>
           </Grid>
         </Grid>
       </Toolbar>
@@ -67,6 +94,8 @@ const Navbar = props => {
   );
 };
 
-Navbar.propTypes = {};
+Navbar.propTypes = {
+  classes: PropTypes.object.isRequired
+};
 
-export default withStyles(styles)(Navbar);
+export default withStyles(navStyles)(Navbar);
