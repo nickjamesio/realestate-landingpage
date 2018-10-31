@@ -7,7 +7,8 @@ import {
 import { CssBaseline, MuiThemeProvider } from '@material-ui/core';
 import Navbar from './Navbar';
 import Theme from '../Theme';
-import HomePage from './HomePage';
+import HomeSection from './HomeSection';
+import ServicesSection from './ServicesSection';
 import ContactPage from './ContactPage';
 import AboutPage from './AboutPage';
 
@@ -20,11 +21,8 @@ class App extends Component {
           <Fragment>
             <Navbar />
 
-            <Switch>
-              <Route exact path='/' component={HomePage} />
-              <Route exact path='/about' component={AboutPage} />
-              <Route exact path='/contact' component={ContactPage} />
-            </Switch>            
+            <HomeSection />
+            <ServicesSection />
           </Fragment>
         </Router>
       </MuiThemeProvider>

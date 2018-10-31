@@ -23,11 +23,11 @@ const InputField = props => {
   return (
     <Input
       disableUnderline
-      {...other}
       classes={{
         ...classes,
         focused: classes.focused
       }}
+      {...other}
     />
   );
 };

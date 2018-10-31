@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import Logo from "./Logo";
 import HamburgerMenuButton from "./HamburgerMenuButton";
 import BetterHomes from "../assets/images/BetterHomes.png";
+import PageContent from "./PageContent";
 
 const menuList = [
   {
@@ -19,8 +20,8 @@ const menuList = [
     label: "Home"
   },
   {
-    path: "/#reviews",
-    label: "Reviews"
+    path: "/#services",
+    label: "Services"
   },
   {
     path: "/#about",
@@ -33,9 +34,6 @@ const menuList = [
 ];
 
 const navStyles = theme => ({
-  appWidth: {
-    ...theme.appWidth
-  },
   colorPrimary: {
     backgroundColor: "white",
     color: theme.palette.primary.contrastText
@@ -65,17 +63,10 @@ const Navbar = props => {
     >
       <Toolbar disableGutters>
         <Grid container justify="center">
-          <Grid
-            item
-            container
-            className={classes.appWidth}
-            direction="row"
-            justify="space-between"
-          >
-            <Grid item>
-              <Logo src={BetterHomes} />
-            </Grid>
-            <Hidden implementation='css' smDown>
+          <PageContent alignItems="center" justify="space-between">
+            <Logo src={BetterHomes} />
+
+            <Hidden implementation="css" smDown>
               <div className={classes.linkContainer}>
                 {menuList.map(link => (
                   <Link key={link.path} className={classes.link} to={link.path}>
@@ -84,10 +75,11 @@ const Navbar = props => {
                 ))}
               </div>
             </Hidden>
-            <Hidden implementation='css' mdUp>
-                <HamburgerMenuButton menuList={menuList} />
+
+            <Hidden implementation="css" mdUp>
+              <HamburgerMenuButton menuList={menuList} />
             </Hidden>
-          </Grid>
+          </PageContent>
         </Grid>
       </Toolbar>
     </AppBar>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from 'prop-types';
 import { IconButton, Menu, MenuItem, withStyles } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -34,7 +34,7 @@ class HamburgerMenuButton extends React.Component {
     const { classes, menuList } = this.props;
 
     return (
-      <div>
+      <Fragment>
         <IconButton
           aria-label="Menu"
           aria-owns={anchorEl ? "simple-menu" : undefined}
@@ -55,7 +55,7 @@ class HamburgerMenuButton extends React.Component {
             </MenuItem>
           ))}
         </Menu>
-      </div>
+      </Fragment>
     );
   }
 }

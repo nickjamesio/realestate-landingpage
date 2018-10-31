@@ -16,7 +16,7 @@ import SelectField from "./SelectField";
 const headerStyles = theme => ({
   root: {
     marginBottom: "1em",
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up("md")]: {
       marginBottom: "3em"
     }
   },
@@ -60,9 +60,9 @@ const formStyles = theme => ({
   },
   bottomBuffer: {
     marginBottom: "1.5em",
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up("md")]: {
       marginBottom: "2em"
-    },
+    }
   },
   selectField: {
     backgroundColor: "white",
@@ -200,14 +200,14 @@ const CardForm = withStyles(formStyles)(
 const styles = theme => ({
   root: {
     height: "100%",
-    width: '100%',
+    width: "100%",
     backgroundColor: "rgba(1,1,1,.6)",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    [theme.breakpoints.up('md')]: {
-      width: '400px'
+    [theme.breakpoints.up("md")]: {
+      width: "400px"
     }
   },
   content: {
@@ -218,7 +218,7 @@ const styles = theme => ({
   }
 });
 
-const ContactCard = props => {
+const SubscribeCard = props => {
   const { classes } = props;
   return (
     <Paper className={classes.root} square elevation={0}>
@@ -231,8 +231,8 @@ const ContactCard = props => {
   );
 };
 
-ContactCard.propTypes = {
+SubscribeCard.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(ContactCard);
+export default withStyles(styles)(SubscribeCard);
