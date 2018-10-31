@@ -1,23 +1,29 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import {
   Button,
   FormControl,
   Grid,
-  Input,
+  MenuItem,
   Paper,
   Typography,
   withStyles
 } from "@material-ui/core";
+import classnames from "classnames";
+import InputField from "./InputField";
+import SelectField from "./SelectField";
 
-const headerStyles = {
+const headerStyles = theme => ({
   root: {
-    marginBottom: '3em'
+    marginBottom: "3em"
   },
   uppercase: {
     textTransform: "uppercase"
+  },
+  subHeading: {
+    marginTop: theme.spacing.unit
   }
-};
+});
 
 const CardHeader = withStyles(headerStyles)(({ classes }) => (
   <Grid
@@ -32,7 +38,12 @@ const CardHeader = withStyles(headerStyles)(({ classes }) => (
     <Typography className={classes.uppercase} variant="h4" color="secondary">
       Made Easy
     </Typography>
-    <Typography color='secondary' variant='subheading'>
+    <Typography
+      className={classes.subHeading}
+      align="center"
+      color="secondary"
+      variant="subheading"
+    >
       Let me help you with your next real estate transaction
     </Typography>
   </Grid>
@@ -40,25 +51,28 @@ const CardHeader = withStyles(headerStyles)(({ classes }) => (
 
 const formStyles = {
   root: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '100%'
+    display: "flex",
+    flexDirection: "column",
+    width: "100%"
   },
-  textField: {
-    paddingLeft: '1em',
-    paddingRight: '1em',
-    width: '100%',
-    backgroundColor: 'white',
-    border: '2px solid',
-    borderColor: 'transparent',
-    marginBottom: '3em'
+  bottomBuffer: {
+    marginBottom: "2em"
   },
-  input: {
-    height: '2em',
+  selectField: {
+    backgroundColor: "white",
+    border: "2px solid",
+    borderColor: "transparent",
+    marginBottom: "2em",
+    height: "2.5em"
   },
-  focusedInput: {
-    border: '2px solid',
-    borderColor: 'green'
+  price: {
+    flexGrow: 1,
+    marginLeft: "2em"
+  },
+  submit: {
+    color: "white",
+    backgroundColor: "red",
+    height: "4em"
   }
 };
 const CardForm = withStyles(formStyles)(
@@ -68,7 +82,9 @@ const CardForm = withStyles(formStyles)(
       this.state = {
         name: "",
         email: "",
-        phone: ""
+        phone: "",
+        transaction: "buy",
+        price: "100,000"
       };
 
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -86,48 +102,87 @@ const CardForm = withStyles(formStyles)(
     }
 
     render() {
-      const { name, email, phone } = this.state;
+      const { name, email, phone, price, transaction } = this.state;
       const { classes } = this.props;
+      const priceArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(value => {
+        let number = value * 100000;
+        return (number = number.toLocaleString("en-US"));
+      });
+
       return (
         <form className={classes.root} onSubmit={this.handleSubmit}>
-          <Input
+          <InputField
             id="name"
             name="name"
             placeholder="Name"
-            disableUnderline
             value={name}
             onChange={this.handleChange}
-            className={classes.textField}
-            classes={
-              {input: classes.input, focused: classes.focusedInput}
-            }
+            className={classes.bottomBuffer}
           />
-          <Input
+          <InputField
             id="email"
             name="email"
             placeholder="Email"
-            disableUnderline
-            value={name}
+            value={email}
             onChange={this.handleChange}
-            className={classes.textField}
-            classes={
-              {input: classes.input, focused: classes.focusedInput}
-            }
+            className={classes.bottomBuffer}
           />
-          <Input
+          <InputField
             id="phone"
             name="phone"
+            type="tel"
             placeholder="Phone"
-            disableUnderline
-            value={name}
+            value={phone}
             onChange={this.handleChange}
-            className={classes.textField}
-            classes={
-              {input: classes.input, focused: classes.focusedInput}
-            }
+            className={classes.bottomBuffer}
           />
-          <Button type='submit' variant='contained'>
-            Contact
+          <Grid container justify="space-between">
+            <SelectField
+              id="transaction"
+              name="transaction"
+              value={transaction}
+              onChange={this.handleChange}
+              className={classes.bottomBuffer}
+            >
+              {native =>
+                native === true
+                  ? ["Buy", "Sell"].map(item => (
+                      <option key={item} value={item.toLowerCase()}>
+                        {item}
+                      </option>
+                    ))
+                  : ["Buy", "Sell"].map(item => (
+                      <MenuItem key={item} value={item.toLowerCase()}>
+                        {item}
+                      </MenuItem>
+                    ))
+              }
+            </SelectField>
+            <SelectField
+              id="price"
+              name="price"
+              value={price}
+              onChange={this.handleChange}
+              className={classnames(classes.bottomBuffer, classes.price)}
+            >
+              {native =>
+                native === true
+                  ? priceArray.map(value => (
+                      <option key={value} value={value}>{`$${value}+`}</option>
+                    ))
+                  : priceArray.map(value => (
+                      <MenuItem
+                        key={value}
+                        value={value}
+                      >{`$${value}+`}</MenuItem>
+                    ))
+              }
+            </SelectField>
+          </Grid>
+          <Button className={classes.submit} type="submit" variant="contained">
+            <Typography variant="h6" color="secondary">
+              Contact
+            </Typography>
           </Button>
         </form>
       );
@@ -139,17 +194,17 @@ const styles = {
   root: {
     height: "100%",
     width: 400,
-    backgroundColor: "rgba(1,1,1,.5)",
+    backgroundColor: "rgba(1,1,1,.6)",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center"
   },
   content: {
-    display: 'flex',
+    display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    width: '80%',
+    width: "80%"
   }
 };
 
@@ -159,7 +214,7 @@ const ContactCard = props => {
     <Paper className={classes.root} square elevation={0}>
       <div className={classes.content}>
         <CardHeader />
-        
+
         <CardForm />
       </div>
     </Paper>
