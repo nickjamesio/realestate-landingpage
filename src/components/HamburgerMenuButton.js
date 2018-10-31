@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import PropTypes from 'prop-types';
 import { IconButton, Menu, MenuItem, withStyles } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-import { Link } from "react-router-dom";
+import { Link } from "react-scroll";
 
 const styles = theme => ({
   link: {

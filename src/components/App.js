@@ -1,30 +1,31 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment } from "react";
 import {
-  BrowserRouter as Router,
-  Route,
-  Switch
-} from 'react-router-dom';
-import { CssBaseline, MuiThemeProvider } from '@material-ui/core';
-import Navbar from './Navbar';
-import Theme from '../Theme';
-import HomeSection from './HomeSection';
-import ServicesSection from './ServicesSection';
-import ContactPage from './ContactPage';
-import AboutPage from './AboutPage';
+  Link,
+  Element,
+  Events,
+  animateScroll as scrol,
+  scrollSpy,
+  scroller
+} from "react-scroll";
+import { CssBaseline, MuiThemeProvider } from "@material-ui/core";
+import Navbar from "./Navbar";
+import Theme from "../Theme";
+import HomeSection from "./HomeSection";
+import ServicesSection from "./ServicesSection";
+import ContactPage from "./ContactPage";
+import AboutPage from "./AboutPage";
 
 class App extends Component {
   render() {
     return (
       <MuiThemeProvider theme={Theme}>
         <CssBaseline />
-        <Router>
-          <Fragment>
-            <Navbar />
+        <Fragment>
+          <Navbar />
 
-            <HomeSection />
-            <ServicesSection />
-          </Fragment>
-        </Router>
+          <HomeSection />
+          <ServicesSection />
+        </Fragment>
       </MuiThemeProvider>
     );
   }
