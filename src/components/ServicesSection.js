@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, Hidden, Typography, withStyles } from "@material-ui/core";
+import { Grid, Typography, withStyles } from "@material-ui/core";
 import withWidth, { isWidthDown } from "@material-ui/core/withWidth";
 import { Element } from "react-scroll";
 import {
@@ -33,15 +33,15 @@ const Header = withStyles({
           Services
         </Typography>
       </Grid>
-      {/* <Typography className={classes.subHeading} variant="subheading">
-        What ever you need, I'm sure I can help
-      </Typography> */}
     </Grid>
   );
 });
 
 const Service = withStyles(theme => ({
-  root: {},
+  root: {
+    paddingRight: theme.spacing.unit * 2,
+    paddingLeft: theme.spacing.unit * 2
+  },
   iconContainer: {
     display: "flex",
     justifyContent: "center",
@@ -57,8 +57,7 @@ const Service = withStyles(theme => ({
     color: "white"
   },
   description: {
-    marginTop: theme.spacing.unit,
-    maxWidth: "350px"
+    marginTop: theme.spacing.unit
   }
 }))(props => {
   const {
@@ -86,7 +85,9 @@ const Service = withStyles(theme => ({
         </div>
       </Grid>
       <Grid item>
-        <Typography variant="h5">{label}</Typography>
+        <Typography variant="h5" align="center">
+          {label}
+        </Typography>
       </Grid>
       <Grid item>
         <Typography
@@ -103,16 +104,16 @@ const Service = withStyles(theme => ({
 
 const styles = theme => ({
   content: {
-    paddingTop: '40px',
-    paddingBottom: '40px',
-    [theme.breakpoints.up('md')]: {
-      paddingTop: '80px',
-      paddingBottom: '80px'
+    paddingTop: "40px",
+    paddingBottom: "40px",
+    [theme.breakpoints.up("md")]: {
+      paddingTop: "80px",
+      paddingBottom: "80px"
     }
   },
   headingBuffer: {
     marginBottom: theme.spacing.unit * 4,
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up("md")]: {
       marginBottom: theme.spacing.unit * 8
     }
   },
@@ -120,6 +121,45 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit * 3
   }
 });
+
+const services = [
+  {
+    icon: AttachMoney,
+    label: "Down Payment Assistance",
+    body:
+      "Buying your first home? I know of several down payment assistance programs you may qualify for."
+  },
+  {
+    icon: AccountBalance,
+    label: "Lenders",
+    body:
+      "Whether you need approval fast, or have unusal income streams, I know just the lendor for you."
+  },
+  {
+    icon: Build,
+    label: "Contractors",
+    body:
+      "Gain access to my list of professional handymen, plumbers, electricians, and general contractors."
+  },
+  {
+    icon: CreditCard,
+    label: "Credit Score Improvement",
+    body:
+      "I have assisted previous clients raise their credit score from the 500s to the 600s in order to purchase their first home."
+  },
+  {
+    icon: PhotoCamera,
+    label: "Professional Photos",
+    body:
+      "Pictures can make or break a listing. I promise to only use quality photos of property."
+  },
+  {
+    icon: Weekend,
+    label: "Home Staging",
+    body:
+      "Display your home's full potential with professional staging. You wont be disappointed by the stagers I use."
+  }
+];
 
 class ServicesSection extends Component {
   constructor(props) {
@@ -132,75 +172,21 @@ class ServicesSection extends Component {
     return (
       <Element name="services">
         <BackgroundContainer justify="center">
-          <PageContent className={classes.content} direction="column" justify="center">
+          <PageContent
+            className={classes.content}
+            direction={isWidthDown("sm", width) ? "column" : "row"}
+            justify="center"
+          >
             <Header className={classes.headingBuffer} />
-            
-            <Grid
-              container
-              wrap={isWidthDown("sm", width) ? "nowrap" : "wrap"}
-              direction={isWidthDown("sm", width) ? "column" : "row"}
-            >
+            {services.map(({ icon: Icon, label, body }) => (
               <Service
                 className={classes.serviceBuffer}
-                icon={AttachMoney}
-                label="Down Payment Assistance"
+                icon={Icon}
+                label={label}
               >
-                Buying your first home? I know of several down payment
-                assistance programs you may qualify for.
+                {body}
               </Service>
-              <Service
-                className={classes.serviceBuffer}
-                icon={AccountBalance}
-                label="Lenders"
-              >
-                Whether you need approval fast, or have unusal income streams,
-                I know just the lendor for you.
-              </Service>
-            </Grid>
-            <Grid
-              container
-              wrap={isWidthDown("sm", width) ? "nowrap" : "wrap"}
-              direction={isWidthDown("sm", width) ? "column" : "row"}
-            >
-              <Service
-                className={classes.serviceBuffer}
-                icon={Build}
-                label="Contractors"
-              >
-                Gain access to my list of professional handymen, plumbers,
-                electricians, and general contractors.
-              </Service>
-              <Service
-                className={classes.serviceBuffer}
-                icon={CreditCard}
-                label="Credit Score Improvement"
-              >
-                I have assisted previous clients raise their credit score from
-                the 500s to the 600s in order to purchase their first home.
-              </Service>
-            </Grid>
-            <Grid
-              container
-              wrap={isWidthDown("sm", width) ? "nowrap" : "wrap"}
-              direction={isWidthDown("sm", width) ? "column" : "row"}
-            >
-              <Service
-                className={classes.serviceBuffer}
-                icon={PhotoCamera}
-                label="Professional Photos"
-              >
-                Pictures can make or break a listing. I promise to only use
-                quality photos of property.
-              </Service>
-              <Service
-                className={classes.serviceBuffer}
-                icon={Weekend}
-                label="Stagers"
-              >
-                Display your home's full potential with professional staging.
-                You wont be disappointed by the ones I use.
-              </Service>
-            </Grid>
+            ))}
           </PageContent>
         </BackgroundContainer>
       </Element>
