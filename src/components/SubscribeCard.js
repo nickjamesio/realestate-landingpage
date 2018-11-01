@@ -9,7 +9,7 @@ import {
   Typography,
   withStyles
 } from "@material-ui/core";
-import classnames from "classnames";
+import classNames from "classnames";
 import InputField from "./InputField";
 import SelectField from "./SelectField";
 
@@ -25,6 +25,9 @@ const headerStyles = theme => ({
   },
   subHeading: {
     marginTop: theme.spacing.unit
+  },
+  white: {
+    color: "white"
   }
 });
 
@@ -35,16 +38,21 @@ const CardHeader = withStyles(headerStyles)(({ classes }) => (
     direction="column"
     alignItems="center"
   >
-    <Typography className={classes.uppercase} variant="h4" color="secondary">
+    <Typography
+      className={classNames(classes.uppercase, classes.white)}
+      variant="h4"
+    >
       Real Estate
     </Typography>
-    <Typography className={classes.uppercase} variant="h4" color="secondary">
+    <Typography
+      className={classNames(classes.uppercase, classes.white)}
+      variant="h4"
+    >
       Made Easy
     </Typography>
     <Typography
-      className={classes.subHeading}
+      className={classNames(classes.subHeading, classes.white)}
       align="center"
-      color="secondary"
       variant="subheading"
     >
       Let me help you with your next real estate transaction
@@ -76,9 +84,11 @@ const formStyles = theme => ({
     marginLeft: "2em"
   },
   submit: {
-    color: "white",
     backgroundColor: "red",
     height: "4em"
+  },
+  whiteText: {
+    color: 'white'
   }
 });
 
@@ -170,7 +180,7 @@ const CardForm = withStyles(formStyles)(
               name="price"
               value={price}
               onChange={this.handleChange}
-              className={classnames(classes.bottomBuffer, classes.price)}
+              className={classNames(classes.bottomBuffer, classes.price)}
             >
               {native =>
                 native === true
@@ -187,7 +197,7 @@ const CardForm = withStyles(formStyles)(
             </SelectField>
           </Grid>
           <Button className={classes.submit} type="submit" variant="contained">
-            <Typography variant="h6" color="secondary">
+            <Typography className={classes.whiteText} variant="h6">
               Sign Up
             </Typography>
           </Button>
@@ -219,9 +229,11 @@ const styles = theme => ({
 });
 
 const SubscribeCard = props => {
-  const { classes } = props;
+  const { classes, className: classNameProp, ...other } = props;
+  const className = classNames(classes.root, classNameProp);
+
   return (
-    <Paper className={classes.root} square elevation={0}>
+    <Paper className={className} square elevation={0} {...other}>
       <div className={classes.content}>
         <CardHeader />
 

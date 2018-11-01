@@ -4,17 +4,25 @@ import withWidth, { isWidthDown } from "@material-ui/core/withWidth";
 import { Element } from 'react-scroll';
 import Background from "../assets/images/house1.jpg";
 import Realtor from "../assets/images/businesslady.png";
-import ContactCard from "./SubscribeCard";
+import SubscribeCard from "./SubscribeCard";
 import BackgrounImage from './Background';
 import PageContent from './PageContent';
 
 const styles = theme => ({
+  content: {
+    paddingTop: '40px',
+    paddingBottom: '40px',
+    [theme.breakpoints.up('md')]: {
+      paddingTop: '80px',
+      paddingBottom: '80px'
+    }
+  },
   realtorContainer: {
-    height: "90%",
-    alignSelf: "end"
+    alignSelf: "end",
+    height: "600px",
   },
   realtor: {
-    height: "100%",
+    height: '100%',
     width: "auto"
   },
 });
@@ -39,7 +47,7 @@ class HomeSection extends Component {
               </Grid>
             </Hidden>
             <Grid item>
-              <ContactCard />
+              <SubscribeCard className={classes.content} />
             </Grid>
           </PageContent>
         </BackgrounImage>

@@ -3,12 +3,7 @@ import { Grid, withStyles } from "@material-ui/core";
 import classNames from "classnames";
 
 const containerStyles = theme => ({
-  root: {
-    height: "550px",
-    [theme.breakpoints.up("md")]: {
-      height: "700px"
-    }
-  }
+  root: {}
 });
 
 const BackgroundContainer = withStyles(containerStyles)(
@@ -31,22 +26,17 @@ const imageStyles = theme => ({
   }
 });
 
-const BackgroundImage = withStyles(imageStyles)(
-  ({ children, className: classNameProp, classes, src, ...other }) => {
-    const inlineStyles = { backgroundImage: `url(${src})` };
-    const className = classNames(classes.root, classNameProp);
+const BackgroundImage = withStyles(imageStyles)(props => {
+  const { children, className: classNameProp, classes, src, ...other } = props;
+  const inlineStyles = { backgroundImage: `url(${src})` };
+  const className = classNames(classes.root, classNameProp);
 
-    return (
-      <BackgroundContainer
-        className={className}
-        style={inlineStyles}
-        {...other}
-      >
-        {children}
-      </BackgroundContainer>
-    );
-  }
-);
+  return (
+    <BackgroundContainer className={className} style={inlineStyles} {...other}>
+      {children}
+    </BackgroundContainer>
+  );
+});
 
 export default BackgroundImage;
 export { BackgroundContainer };

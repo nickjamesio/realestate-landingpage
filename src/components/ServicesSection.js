@@ -2,7 +2,14 @@ import React, { Component } from "react";
 import { Grid, Hidden, Typography, withStyles } from "@material-ui/core";
 import withWidth, { isWidthDown } from "@material-ui/core/withWidth";
 import { Element } from "react-scroll";
-import { PhotoCamera } from "@material-ui/icons";
+import {
+  PhotoCamera,
+  AttachMoney,
+  Build,
+  AccountBalance,
+  CreditCard,
+  Weekend
+} from "@material-ui/icons";
 import { BackgroundContainer } from "./Background";
 import PageContent from "./PageContent";
 import classNames from "classnames";
@@ -35,8 +42,19 @@ const Header = withStyles({
 
 const Service = withStyles(theme => ({
   root: {},
+  iconContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "grey",
+    borderRadius: "50%",
+    height: "80px",
+    width: "80px",
+    marginBottom: theme.spacing.unit
+  },
   icon: {
-    fontSize: "60px"
+    fontSize: "50px",
+    color: "white"
   },
   description: {
     marginTop: theme.spacing.unit,
@@ -63,13 +81,19 @@ const Service = withStyles(theme => ({
       md={6}
     >
       <Grid item>
-        <Icon className={classes.icon} />
+        <div className={classes.iconContainer}>
+          <Icon className={classes.icon} />
+        </div>
       </Grid>
       <Grid item>
         <Typography variant="h5">{label}</Typography>
       </Grid>
       <Grid item>
-        <Typography className={classes.description} align="center">
+        <Typography
+          color="secondary"
+          className={classes.description}
+          align="center"
+        >
           {children}
         </Typography>
       </Grid>
@@ -78,8 +102,19 @@ const Service = withStyles(theme => ({
 });
 
 const styles = theme => ({
+  content: {
+    paddingTop: '40px',
+    paddingBottom: '40px',
+    [theme.breakpoints.up('md')]: {
+      paddingTop: '80px',
+      paddingBottom: '80px'
+    }
+  },
   headingBuffer: {
-    marginBottom: theme.spacing.unit * 8
+    marginBottom: theme.spacing.unit * 4,
+    [theme.breakpoints.up('md')]: {
+      marginBottom: theme.spacing.unit * 8
+    }
   },
   serviceBuffer: {
     marginBottom: theme.spacing.unit * 3
@@ -97,9 +132,9 @@ class ServicesSection extends Component {
     return (
       <Element name="services">
         <BackgroundContainer justify="center">
-          <PageContent direction="column" justify="center">
+          <PageContent className={classes.content} direction="column" justify="center">
             <Header className={classes.headingBuffer} />
-
+            
             <Grid
               container
               wrap={isWidthDown("sm", width) ? "nowrap" : "wrap"}
@@ -107,7 +142,7 @@ class ServicesSection extends Component {
             >
               <Service
                 className={classes.serviceBuffer}
-                icon={PhotoCamera}
+                icon={AttachMoney}
                 label="Down Payment Assistance"
               >
                 Buying your first home? I know of several down payment
@@ -115,10 +150,11 @@ class ServicesSection extends Component {
               </Service>
               <Service
                 className={classes.serviceBuffer}
-                icon={PhotoCamera}
-                label="Lendors"
+                icon={AccountBalance}
+                label="Lenders"
               >
-                Wheather you need approval fast, or
+                Whether you need approval fast, or have unusal income streams,
+                I know just the lendor for you.
               </Service>
             </Grid>
             <Grid
@@ -128,17 +164,19 @@ class ServicesSection extends Component {
             >
               <Service
                 className={classes.serviceBuffer}
-                icon={PhotoCamera}
+                icon={Build}
                 label="Contractors"
               >
-                Test test test test test
+                Gain access to my list of professional handymen, plumbers,
+                electricians, and general contractors.
               </Service>
               <Service
                 className={classes.serviceBuffer}
-                icon={PhotoCamera}
+                icon={CreditCard}
                 label="Credit Score Improvement"
               >
-                Test test test test test
+                I have assisted previous clients raise their credit score from
+                the 500s to the 600s in order to purchase their first home.
               </Service>
             </Grid>
             <Grid
@@ -151,14 +189,16 @@ class ServicesSection extends Component {
                 icon={PhotoCamera}
                 label="Professional Photos"
               >
-                Test test test test test
+                Pictures can make or break a listing. I promise to only use
+                quality photos of property.
               </Service>
               <Service
                 className={classes.serviceBuffer}
-                icon={PhotoCamera}
+                icon={Weekend}
                 label="Stagers"
               >
-                Test test test test test
+                Display your home's full potential with professional staging.
+                You wont be disappointed by the ones I use.
               </Service>
             </Grid>
           </PageContent>
