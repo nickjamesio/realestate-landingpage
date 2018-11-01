@@ -17,19 +17,23 @@ import PageContent from "./PageContent";
 const menuList = [
   {
     path: "home",
-    label: "Home"
+    label: "Home",
+    offset: -64
   },
   {
     path: "services",
-    label: "Services"
+    label: "Services",
+    offset: -64
   },
   {
     path: "about",
-    label: "About"
+    label: "About",
+    offset: -64
   },
   {
     path: "contact",
-    label: "Contact"
+    label: "Contact",
+    offset: 0
   }
 ];
 
@@ -48,7 +52,7 @@ const navStyles = theme => ({
     "&:last-child": {
       marginRight: 0
     },
-    cursor: 'pointer'
+    cursor: "pointer"
   }
 });
 
@@ -70,7 +74,13 @@ const Navbar = props => {
             <Hidden implementation="css" smDown>
               <div className={classes.linkContainer}>
                 {menuList.map(link => (
-                  <Link key={link.path} className={classes.link} to={link.path} smooth={true}>
+                  <Link
+                    key={link.path}
+                    className={classes.link}
+                    to={link.path}
+                    smooth={true}
+                    offset={link.offset}
+                  >
                     <Typography variant="h6">{link.label}</Typography>
                   </Link>
                 ))}

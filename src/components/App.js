@@ -12,8 +12,9 @@ import Navbar from "./Navbar";
 import Theme from "../Theme";
 import HomeSection from "./HomeSection";
 import ServicesSection from "./ServicesSection";
-import ContactPage from "./ContactPage";
-import AboutPage from "./AboutPage";
+import ReviewsSection from './ReviewsSection';
+import AboutSection from "./AboutSection";
+import ContactSection from "./ContactSection";
 
 class App extends Component {
   render() {
@@ -25,6 +26,10 @@ class App extends Component {
 
           <HomeSection />
           <ServicesSection />
+          <ReviewsSection />
+          <AboutSection />
+          <ContactSection />
+          
         </Fragment>
       </MuiThemeProvider>
     );

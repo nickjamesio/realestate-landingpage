@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { IconButton, Menu, MenuItem, withStyles } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-import { Link } from "react-scroll";
+import { Link, Events } from "react-scroll";
 
 const styles = theme => ({
   link: {
@@ -19,6 +19,14 @@ class HamburgerMenuButton extends React.Component {
 
     this.handleClick = this.handleClick.bind(this);
     this.handleClose = this.handleClose.bind(this);
+  }
+
+  componentDidMount() {
+    Events.scrollEvent.register('begin', (to, element) => console.log('end scroll') || this.handleClose());
+  }
+
+  componentWillUnmount() {
+    Events.scrollEvent.remove('begin');
   }
 
   handleClick(event) {
@@ -51,7 +59,15 @@ class HamburgerMenuButton extends React.Component {
         >
           {menuList.map(menuItem => (
             <MenuItem key={menuItem.path} onClick={this.handleClose}>
-              <Link className={classes.link} to={menuItem.path}>{menuItem.label}</Link>
+              <Link
+                key={menuItem.path}
+                className={classes.menuItem}
+                to={menuItem.path}
+                smooth={true}
+                offset={menuItem.offset}
+              >
+                {menuItem.label}
+              </Link>
             </MenuItem>
           ))}
         </Menu>
@@ -62,10 +78,12 @@ class HamburgerMenuButton extends React.Component {
 
 HamburgerMenuButton.propTypes = {
   classes: PropTypes.object.isRequired,
-  menuList: PropTypes.arrayOf(PropTypes.shape({
-    path: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired
-  }))
+  menuList: PropTypes.arrayOf(
+    PropTypes.shape({
+      path: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired
+    })
+  )
 };
 
 export default withStyles(styles)(HamburgerMenuButton);
