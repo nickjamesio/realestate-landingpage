@@ -6,30 +6,26 @@ import { Element } from "react-scroll";
 import green from "@material-ui/core/colors/green";
 import { Person, FormatQuote } from "@material-ui/icons";
 import classNames from "classnames";
+import SwipeableViews from "react-swipeable-views";
 import BackgroundImage from "./Background";
 import PageContent from "./PageContent";
-import Yelp from '../assets/images/Yelp.png';
-import Background from "../assets/images/wood-kitchen.jpg"
+import Yelp from "../assets/images/Yelp.png";
+import Background from "../assets/images/wood-kitchen.jpg";
 
 const Header = withStyles({
   root: {
-    height: '140px'
+    height: "140px"
   },
   img: {
-    height: '100%',
-    width: 'auto'
+    height: "100%",
+    width: "auto"
   }
 })(props => {
   const { classes, className: classNameProp } = props;
   const className = classNames(classes.root, classNameProp);
 
   return (
-    <Grid
-      item
-      container
-      className={className}
-      justify="center"
-    >
+    <Grid item container className={className} justify="center">
       <img className={classes.img} src={Yelp} />
     </Grid>
   );
@@ -38,7 +34,7 @@ const Header = withStyles({
 const Review = withStyles(theme => ({
   root: {
     paddingLeft: theme.spacing.unit,
-    paddingRight: theme.spacing.unit,
+    paddingRight: theme.spacing.unit
   },
   background: {
     padding: theme.spacing.unit * 4,
@@ -91,14 +87,14 @@ const Review = withStyles(theme => ({
   const className = classNames(classes.root, classNameProp);
 
   return (
-    <Grid
-      item
-      container
-      className={className}
-      xs={12}
-      md={4}
-    >
-      <Grid container item direction="column" alignItems="center" className={classes.background}>
+    <Grid item container className={className} xs={12} md={4}>
+      <Grid
+        container
+        item
+        direction="column"
+        alignItems="center"
+        className={classes.background}
+      >
         <Grid item>
           <div className={classes.iconContainer}>
             <Icon className={classes.icon} />
@@ -152,6 +148,33 @@ const styles = theme => ({
   }
 });
 
+const reviews = [
+  {
+    name: "Nick James",
+    date: "2/27/2018",
+    body:
+      "Audrey is the bestest realtor in da whole wide world.\
+       I like trains and watching youtube videos. This is a bunch\
+       of garbage text just to see what it looks like."
+  },
+  {
+    name: "Josh Daniels",
+    date: "4/12/2018",
+    body:
+      "Audrey is the bestest realtor in da whole wide world.\
+       I like trains and watching youtube videos. This is a bunch\
+       of garbage text just to see what it looks like."
+  },
+  {
+    name: "Captain America",
+    date: "9/21/2018",
+    body:
+      "Audrey is the bestest realtor in da whole wide world.\
+       I like trains and watching youtube videos. This is a bunch\
+       of garbage text just to see what it looks like."
+  }
+];
+
 class ReviewsSection extends Component {
   constructor(props) {
     super(props);
@@ -159,28 +182,26 @@ class ReviewsSection extends Component {
   }
   render() {
     const { classes, width } = this.props;
+    const reviewsList = reviews.map(({ name, date, body }) => (
+      <Review key={name} icon={Person} label={name} date={date}>
+        {body}
+      </Review>
+    ));
 
     return (
       <Element name="reviews">
-        <BackgroundImage src={Background} className={classes.background} justify="center">
+        <BackgroundImage
+          src={Background}
+          className={classes.background}
+          justify="center"
+        >
           <PageContent className={classes.content} justify="center">
             <Header className={classes.headingBuffer} />
 
-            <Review icon={Person} label="Nick James" date="2/27/2018">
-              Audrey is the bestest realtor in da whole wide world. I like
-              trains and watching youtube videos. This is a bunch of garbage
-              text just to see what it looks like.
-            </Review>
-            <Review icon={Person} label="Nick James" date="5/17/2018">
-              Audrey is the bestest realtor in da whole wide world. I like
-              trains and watching youtube videos. This is a bunch of garbage
-              text just to see what it looks like.
-            </Review>
-            <Review icon={Person} label="Nick James" date="2/27/2018">
-              Audrey is the bestest realtor in da whole wide world. I like
-              trains and watching youtube videos. This is a bunch of garbage
-              text just to see what it looks like.
-            </Review>
+            {isWidthDown('sm', width)
+              ? <SwipeableViews enableMouseEvents>{reviewsList}</SwipeableViews>
+              : reviewsList
+            }
           </PageContent>
         </BackgroundImage>
       </Element>
