@@ -63,7 +63,6 @@ const Navbar = props => {
     <AppBar
       color="primary"
       position="sticky"
-      elevation={0}
       classes={{ colorPrimary: classes.colorPrimary }}
     >
       <Toolbar disableGutters>

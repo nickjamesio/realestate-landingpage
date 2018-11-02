@@ -14,7 +14,7 @@ const styles = theme => ({
   },
   focused: {
     border: "2px solid",
-    borderColor: "red"
+    borderColor: "green"
   }
 });
 

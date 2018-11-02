@@ -84,7 +84,7 @@ const formStyles = theme => ({
     marginLeft: "2em"
   },
   submit: {
-    backgroundColor: "red",
+    backgroundColor: "green",
     height: "4em"
   },
   whiteText: {
@@ -211,7 +211,7 @@ const styles = theme => ({
   root: {
     height: "100%",
     width: "100%",
-    backgroundColor: "rgba(1,1,1,.6)",
+    backgroundColor: "rgba(1,1,1,.7)",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",

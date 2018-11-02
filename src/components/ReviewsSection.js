@@ -3,13 +3,22 @@ import PropTypes from "prop-types";
 import { Grid, withStyles, Typography } from "@material-ui/core";
 import withWidth, { isWidthDown } from "@material-ui/core/withWidth";
 import { Element } from "react-scroll";
-import red from "@material-ui/core/colors/red";
+import green from "@material-ui/core/colors/green";
+import { Person, FormatQuote } from "@material-ui/icons";
 import classNames from "classnames";
-import { BackgroundContainer } from "./Background";
+import BackgroundImage from "./Background";
 import PageContent from "./PageContent";
+import Yelp from '../assets/images/Yelp.png';
+import Background from "../assets/images/wood-kitchen.jpg"
 
 const Header = withStyles({
-  root: {}
+  root: {
+    height: '140px'
+  },
+  img: {
+    height: '100%',
+    width: 'auto'
+  }
 })(props => {
   const { classes, className: classNameProp } = props;
   const className = classNames(classes.root, classNameProp);
@@ -19,44 +28,62 @@ const Header = withStyles({
       item
       container
       className={className}
-      direction="column"
-      alignItems="center"
+      justify="center"
     >
-      <Grid item>
-        <Typography className={classes.heading} variant="h3">
-          Reviews
-        </Typography>
-      </Grid>
+      <img className={classes.img} src={Yelp} />
     </Grid>
   );
 });
 
 const Review = withStyles(theme => ({
   root: {
-    paddingRight: theme.spacing.unit * 2,
-    paddingLeft: theme.spacing.unit * 2
+    paddingLeft: theme.spacing.unit,
+    paddingRight: theme.spacing.unit,
+  },
+  background: {
+    padding: theme.spacing.unit * 4,
+    backgroundColor: "rgba(1,1,1,.6)"
   },
   iconContainer: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "grey",
+    backgroundColor: "white",
     borderRadius: "50%",
     height: "80px",
     width: "80px",
     marginBottom: theme.spacing.unit
   },
+  label: {
+    color: "white",
+    marginBottom: theme.spacing.unit
+  },
   icon: {
     fontSize: "50px",
-    color: "white"
+    color: "black"
   },
   description: {
-    marginTop: theme.spacing.unit
+    color: "white"
+  },
+  date: {
+    color: "white"
+  },
+  quote: {
+    color: "white",
+    fontSize: "2em",
+    "&.first": {
+      transform: "rotate(180deg)",
+      alignSelf: "flex-start"
+    },
+    "&.last": {
+      alignSelf: "flex-end"
+    }
   }
 }))(props => {
   const {
     classes,
     className: classNameProp,
+    date,
     icon: Icon,
     children,
     label
@@ -68,38 +95,48 @@ const Review = withStyles(theme => ({
       item
       container
       className={className}
-      direction="column"
-      alignItems="center"
       xs={12}
-      md={6}
+      md={4}
     >
-      <Grid item>
-        <div className={classes.iconContainer}>
-          <Icon className={classes.icon} />
-        </div>
-      </Grid>
-      <Grid item>
-        <Typography variant="h5" align="center">
-          {label}
-        </Typography>
-      </Grid>
-      <Grid item>
-        <Typography
-          color="secondary"
-          className={classes.description}
-          align="center"
-        >
-          {children}
-        </Typography>
+      <Grid container item direction="column" alignItems="center" className={classes.background}>
+        <Grid item>
+          <div className={classes.iconContainer}>
+            <Icon className={classes.icon} />
+          </div>
+        </Grid>
+        <Grid item>
+          <Typography className={classes.label} variant="h5" align="center">
+            {label}
+          </Typography>
+        </Grid>
+        <Grid item container direction="column" wrap="nowrap">
+          <FormatQuote className={classNames("first", classes.quote)} />
+          <Grid item>
+            <Typography className={classes.description} align="center">
+              {children}
+            </Typography>
+          </Grid>
+          <FormatQuote className={classNames("last", classes.quote)} />
+        </Grid>
+        <Grid item>
+          <Typography variant="subheading" className={classes.date}>
+            {date}
+          </Typography>
+        </Grid>
       </Grid>
     </Grid>
   );
 });
 
-
 const styles = theme => ({
   background: {
-    backgroundColor: red[500]
+    backgroundColor: green[500]
+  },
+  headingBuffer: {
+    marginBottom: theme.spacing.unit * 4,
+    [theme.breakpoints.up("md")]: {
+      marginBottom: theme.spacing.unit * 8
+    }
   },
   content: {
     paddingTop: "40px",
@@ -108,6 +145,10 @@ const styles = theme => ({
       paddingTop: "80px",
       paddingBottom: "80px"
     }
+  },
+  review: {
+    paddingLeft: "20px",
+    paddingRight: "20px"
   }
 });
 
@@ -121,11 +162,27 @@ class ReviewsSection extends Component {
 
     return (
       <Element name="reviews">
-        <BackgroundContainer className={classes.background} justify="center">
+        <BackgroundImage src={Background} className={classes.background} justify="center">
           <PageContent className={classes.content} justify="center">
-            <Header />
+            <Header className={classes.headingBuffer} />
+
+            <Review icon={Person} label="Nick James" date="2/27/2018">
+              Audrey is the bestest realtor in da whole wide world. I like
+              trains and watching youtube videos. This is a bunch of garbage
+              text just to see what it looks like.
+            </Review>
+            <Review icon={Person} label="Nick James" date="5/17/2018">
+              Audrey is the bestest realtor in da whole wide world. I like
+              trains and watching youtube videos. This is a bunch of garbage
+              text just to see what it looks like.
+            </Review>
+            <Review icon={Person} label="Nick James" date="2/27/2018">
+              Audrey is the bestest realtor in da whole wide world. I like
+              trains and watching youtube videos. This is a bunch of garbage
+              text just to see what it looks like.
+            </Review>
           </PageContent>
-        </BackgroundContainer>
+        </BackgroundImage>
       </Element>
     );
   }
