@@ -180,6 +180,7 @@ class ServicesSection extends Component {
             <Header className={classes.headingBuffer} />
             {services.map(({ icon: Icon, label, body }) => (
               <Service
+                key={label}
                 className={classes.serviceBuffer}
                 icon={Icon}
                 label={label}
