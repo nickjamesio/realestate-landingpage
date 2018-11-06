@@ -116,6 +116,11 @@ const CardForm = withStyles(formStyles)(
 
     handleSubmit(event) {
       event.preventDefault();
+      // TODO
+      // Confirm name not empty
+      // Basic check for email
+      // Confirm phone not empty
+
     }
 
     render() {
@@ -127,10 +132,11 @@ const CardForm = withStyles(formStyles)(
       });
 
       return (
-        <form novalidate="novalidate" className={classes.root} onSubmit={this.handleSubmit}>
+        <form className={classes.root} onSubmit={this.handleSubmit}>
           <InputField
             id="name"
             name="name"
+            required
             placeholder="Name"
             value={name}
             onChange={this.handleChange}
@@ -139,6 +145,7 @@ const CardForm = withStyles(formStyles)(
           <InputField
             id="email"
             name="email"
+            required
             type="email"
             placeholder="Email"
             value={email}
@@ -148,6 +155,7 @@ const CardForm = withStyles(formStyles)(
           <InputField
             id="phone"
             name="phone"
+            required
             type="tel"
             placeholder="Phone"
             value={phone}

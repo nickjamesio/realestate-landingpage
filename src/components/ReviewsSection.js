@@ -206,7 +206,7 @@ class ReviewsSection extends Component {
                 slideRenderer={slideRenderer}
               />
             ) : (
-              reviewsList
+              renderedReviews
             )}
           </PageContent>
         </BackgroundImage>
