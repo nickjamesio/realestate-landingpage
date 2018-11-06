@@ -127,7 +127,7 @@ const CardForm = withStyles(formStyles)(
       });
 
       return (
-        <form className={classes.root} onSubmit={this.handleSubmit}>
+        <form novalidate="novalidate" className={classes.root} onSubmit={this.handleSubmit}>
           <InputField
             id="name"
             name="name"
@@ -139,6 +139,7 @@ const CardForm = withStyles(formStyles)(
           <InputField
             id="email"
             name="email"
+            type="email"
             placeholder="Email"
             value={email}
             onChange={this.handleChange}

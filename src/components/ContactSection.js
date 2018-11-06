@@ -69,7 +69,7 @@ const ContactOptions = withStyles(theme => ({
     },
     { 
       icon: Phone,
-      text: "510-552-6591",
+      text: "510-421-3020",
       link: null
     },
     {

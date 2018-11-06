@@ -6,6 +6,8 @@ import { Element } from "react-scroll";
 import { Person, FormatQuote } from "@material-ui/icons";
 import classNames from "classnames";
 import SwipeableViews from "react-swipeable-views";
+import { virtualize } from "react-swipeable-views-utils";
+import { mod } from "react-swipeable-views-core";
 import BackgroundImage from "./Background";
 import PageContent from "./PageContent";
 import Yelp from "../assets/images/Yelp.png";
@@ -123,28 +125,7 @@ const Review = withStyles(theme => ({
   );
 });
 
-const styles = theme => ({
-  headingBuffer: {
-    marginBottom: theme.spacing.unit * 4,
-    [theme.breakpoints.up("md")]: {
-      marginBottom: theme.spacing.unit * 8
-    }
-  },
-  content: {
-    paddingTop: "40px",
-    paddingBottom: "40px",
-    [theme.breakpoints.up("md")]: {
-      paddingTop: "80px",
-      paddingBottom: "80px"
-    }
-  },
-  review: {
-    paddingLeft: "20px",
-    paddingRight: "20px"
-  }
-});
-
-const reviews = [
+const reviewsData = [
   {
     name: "Nick James",
     date: "2/27/2018",
@@ -170,6 +151,36 @@ const reviews = [
        of garbage text just to see what it looks like."
   }
 ];
+const renderedReviews = reviewsData.map(({ name, date, body }) => (
+  <Review key={name} icon={Person} label={name} date={date}>
+    {body}
+  </Review>
+));
+
+const VirtualizeSwipeableViews = virtualize(SwipeableViews);
+const slideRenderer = ({ index }) =>
+  renderedReviews[mod(index, renderedReviews.length)];
+
+const styles = theme => ({
+  headingBuffer: {
+    marginBottom: theme.spacing.unit * 4,
+    [theme.breakpoints.up("md")]: {
+      marginBottom: theme.spacing.unit * 8
+    }
+  },
+  content: {
+    paddingTop: "40px",
+    paddingBottom: "40px",
+    [theme.breakpoints.up("md")]: {
+      paddingTop: "80px",
+      paddingBottom: "80px"
+    }
+  },
+  review: {
+    paddingLeft: "20px",
+    paddingRight: "20px"
+  }
+});
 
 class ReviewsSection extends Component {
   constructor(props) {
@@ -178,11 +189,6 @@ class ReviewsSection extends Component {
   }
   render() {
     const { classes, width } = this.props;
-    const reviewsList = reviews.map(({ name, date, body }) => (
-      <Review key={name} icon={Person} label={name} date={date}>
-        {body}
-      </Review>
-    ));
 
     return (
       <Element name="reviews">
@@ -194,10 +200,14 @@ class ReviewsSection extends Component {
           <PageContent className={classes.content} justify="center">
             <Header className={classes.headingBuffer} />
 
-            {isWidthDown('sm', width)
-              ? <SwipeableViews enableMouseEvents>{reviewsList}</SwipeableViews>
-              : reviewsList
-            }
+            {isWidthDown("sm", width) ? (
+              <VirtualizeSwipeableViews
+                enableMouseEvents
+                slideRenderer={slideRenderer}
+              />
+            ) : (
+              reviewsList
+            )}
           </PageContent>
         </BackgroundImage>
       </Element>

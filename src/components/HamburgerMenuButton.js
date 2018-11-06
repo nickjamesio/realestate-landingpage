@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { IconButton, Menu, MenuItem, withStyles } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-import { Link, Events } from "react-scroll";
+import { Link, Events, scroller } from "react-scroll";
 
 const styles = theme => ({
   link: {
@@ -33,8 +33,12 @@ class HamburgerMenuButton extends React.Component {
     this.setState({ anchorEl: event.currentTarget });
   }
 
-  handleClose() {
+  handleClose(element, offset) {
     this.setState({ anchorEl: null });
+    scroller.scrollTo(element, {
+      smooth: true,
+      offset
+    });
   }
 
   render() {
@@ -58,16 +62,8 @@ class HamburgerMenuButton extends React.Component {
           onClose={this.handleClose}
         >
           {menuList.map(menuItem => (
-            <MenuItem key={menuItem.path} onClick={this.handleClose}>
-              <Link
-                key={menuItem.path}
-                className={classes.menuItem}
-                to={menuItem.path}
-                smooth={true}
-                offset={menuItem.offset}
-              >
-                {menuItem.label}
-              </Link>
+            <MenuItem key={menuItem.path} onClick={() => this.handleClose(menuItem.path, menuItem.offset)}>
+              {menuItem.label}
             </MenuItem>
           ))}
         </Menu>

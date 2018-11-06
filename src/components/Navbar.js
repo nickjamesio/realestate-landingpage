@@ -59,6 +59,8 @@ const navStyles = theme => ({
 const Navbar = props => {
   const { classes } = props;
 
+
+
   return (
     <AppBar
       color="primary"
