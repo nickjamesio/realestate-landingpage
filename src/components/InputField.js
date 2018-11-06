@@ -13,8 +13,8 @@ const styles = theme => ({
     borderColor: "transparent"
   },
   focused: {
+    ...theme.greenBorder,
     border: "2px solid",
-    borderColor: "green"
   }
 });
 

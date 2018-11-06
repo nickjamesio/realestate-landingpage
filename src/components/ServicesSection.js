@@ -78,6 +78,7 @@ const Service = withStyles(theme => ({
       alignItems="center"
       xs={12}
       md={6}
+      lg={4}
     >
       <Grid item>
         <div className={classes.iconContainer}>
@@ -93,6 +94,7 @@ const Service = withStyles(theme => ({
         <Typography
           color="secondary"
           className={classes.description}
+          variant="subheading"
           align="center"
         >
           {children}

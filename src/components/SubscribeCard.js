@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import {
   Button,
@@ -84,7 +84,7 @@ const formStyles = theme => ({
     marginLeft: "2em"
   },
   submit: {
-    backgroundColor: "green",
+    ...theme.greenBackground,
     height: "4em"
   },
   whiteText: {
@@ -198,7 +198,7 @@ const CardForm = withStyles(formStyles)(
           </Grid>
           <Button className={classes.submit} type="submit" variant="contained">
             <Typography className={classes.whiteText} variant="h6">
-              Sign Up
+              Click Here
             </Typography>
           </Button>
         </form>

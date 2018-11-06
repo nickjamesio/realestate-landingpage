@@ -1,5 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import grey from '@material-ui/core/colors/grey';
+import { grey, green } from '@material-ui/core/colors';
 
 const Theme = createMuiTheme({
   // palette: {
@@ -26,6 +26,18 @@ const Theme = createMuiTheme({
     paddingLeft: 12,
     paddingRight: 12,
   },
+  greenText: {
+    color: green[600]
+  },
+  greenButton: {
+    backgroundColor: green[600]
+  },
+  greenBackground: {
+    backgroundColor: green[600]
+  },
+  greenBorder: {
+    borderColor: green[600]
+  }
 });
 
 export default Theme;

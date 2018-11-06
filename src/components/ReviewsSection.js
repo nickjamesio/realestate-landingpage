@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { Grid, withStyles, Typography } from "@material-ui/core";
 import withWidth, { isWidthDown } from "@material-ui/core/withWidth";
 import { Element } from "react-scroll";
-import green from "@material-ui/core/colors/green";
 import { Person, FormatQuote } from "@material-ui/icons";
 import classNames from "classnames";
 import SwipeableViews from "react-swipeable-views";
@@ -125,9 +124,6 @@ const Review = withStyles(theme => ({
 });
 
 const styles = theme => ({
-  background: {
-    backgroundColor: green[500]
-  },
   headingBuffer: {
     marginBottom: theme.spacing.unit * 4,
     [theme.breakpoints.up("md")]: {
