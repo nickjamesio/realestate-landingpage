@@ -25,10 +25,10 @@ class App extends Component {
           <Navbar />
 
           <HomeSection />
-          <ServicesSection />
+          {/* <ServicesSection />
           <ReviewsSection />
           <AboutSection />
-          <ContactSection />
+          <ContactSection /> */}
           
         </Fragment>
       </MuiThemeProvider>

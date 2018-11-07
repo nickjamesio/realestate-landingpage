@@ -1,5 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import { grey, green } from '@material-ui/core/colors';
+import { grey, green, red } from '@material-ui/core/colors';
 
 const Theme = createMuiTheme({
   // palette: {
@@ -37,6 +37,9 @@ const Theme = createMuiTheme({
   },
   greenBorder: {
     borderColor: green[600]
+  },
+  redBorder: {
+    borderColor: red[600]
   }
 });
 

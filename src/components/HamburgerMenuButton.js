@@ -22,7 +22,7 @@ class HamburgerMenuButton extends React.Component {
   }
 
   componentDidMount() {
-    Events.scrollEvent.register('begin', (to, element) => console.log('end scroll') || this.handleClose());
+    Events.scrollEvent.register('begin', (to, element) => this.handleClose());
   }
 
   componentWillUnmount() {

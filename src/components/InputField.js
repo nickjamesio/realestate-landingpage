@@ -15,6 +15,10 @@ const styles = theme => ({
   focused: {
     ...theme.greenBorder,
     border: "2px solid",
+  },
+  error: {
+    ...theme.redBorder,
+    border: "2px solid",
   }
 });
 

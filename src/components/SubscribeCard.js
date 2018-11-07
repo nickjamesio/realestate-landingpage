@@ -12,6 +12,7 @@ import {
 import classNames from "classnames";
 import InputField from "./InputField";
 import SelectField from "./SelectField";
+import Tooltip from "./Tooltip";
 
 const headerStyles = theme => ({
   root: {
@@ -97,12 +98,16 @@ const CardForm = withStyles(formStyles)(
     constructor(props) {
       super(props);
       this.state = {
-        name: "",
-        email: "",
-        phone: "",
-        transaction: "buy",
-        price: "100,000"
+        name: {value: "", error: false},
+        email: {value: "", error: false},
+        phone: {value: "", error: false},
+        transaction: {value: "buy", error: false},
+        price: {value: "100,000", error: false}
       };
+
+      this.nameRef = React.createRef();
+      this.emailRef = React.createRef();
+      this.phoneRef = React.createRef();
 
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleChange = this.handleChange.bind(this);
@@ -110,17 +115,42 @@ const CardForm = withStyles(formStyles)(
 
     handleChange(event) {
       this.setState({
-        [event.target.name]: event.target.value
+        [event.target.name]: {
+          value: event.target.value,
+          error: false
+        }
       });
     }
 
     handleSubmit(event) {
       event.preventDefault();
-      // TODO
-      // Confirm name not empty
-      // Basic check for email
-      // Confirm phone not empty
 
+      const { name, email, phone } = this.state;
+
+      if (name.value.length === 0) {
+        this.setState({name: {
+          ...name,
+          error: true
+        }});
+      }
+
+      else if (email.value.length === 0) {
+        this.setState({email: {
+          ...email,
+          error: true
+        }});
+      }
+
+      else if (phone.value.length === 0) {
+        this.setState({phone: {
+          ...phone,
+          error: true
+        }});
+      }
+
+      // TODO
+      // Basic check for email
+      // Display popper
     }
 
     render() {
@@ -132,41 +162,56 @@ const CardForm = withStyles(formStyles)(
       });
 
       return (
-        <form className={classes.root} onSubmit={this.handleSubmit}>
+        <form noValidate className={classes.root} onSubmit={this.handleSubmit}>
           <InputField
             id="name"
             name="name"
-            required
+            error={name.error}
             placeholder="Name"
-            value={name}
+            value={name.value}
             onChange={this.handleChange}
             className={classes.bottomBuffer}
+            inputRef={element => this.nameRef = element}
           />
+          <Tooltip placement="bottom-start" open={name.error} anchorEl={this.nameRef}>
+            Please fill out this field.
+          </Tooltip>
+
           <InputField
             id="email"
             name="email"
-            required
+            error={email.error}
             type="email"
             placeholder="Email"
-            value={email}
+            value={email.value}
             onChange={this.handleChange}
             className={classes.bottomBuffer}
+            inputRef={element => this.emailRef = element}
           />
+          <Tooltip placement="bottom-start" open={email.error} anchorEl={this.emailRef}>
+            Please fill out this field.
+          </Tooltip>
+
           <InputField
             id="phone"
             name="phone"
-            required
+            error={phone.error}
             type="tel"
             placeholder="Phone"
-            value={phone}
+            value={phone.value}
             onChange={this.handleChange}
             className={classes.bottomBuffer}
+            inputRef={element => this.phoneRef = element}
           />
+          <Tooltip placement="bottom-start" open={phone.error} anchorEl={this.phoneRef}>
+            Please fill out this field.
+          </Tooltip>
+
           <Grid container justify="space-between">
             <SelectField
               id="transaction"
               name="transaction"
-              value={transaction}
+              value={transaction.value}
               onChange={this.handleChange}
               className={classes.bottomBuffer}
             >
@@ -187,7 +232,7 @@ const CardForm = withStyles(formStyles)(
             <SelectField
               id="price"
               name="price"
-              value={price}
+              value={price.value}
               onChange={this.handleChange}
               className={classNames(classes.bottomBuffer, classes.price)}
             >
