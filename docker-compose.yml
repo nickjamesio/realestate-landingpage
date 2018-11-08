@@ -1,11 +1,11 @@
 version: '3.5'
 
 services:
-  react:
+  web:
     build:
-      context: ./
+      context: ./react
       dockerfile: Dockerfile
     ports:
       - '8080:8080'
     volumes:
-      - ~/Projects/mom_website/:/app
+      - ~/Projects/mom_website/react:/app

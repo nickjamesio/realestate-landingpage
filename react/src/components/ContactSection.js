@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Grid, Typography, withStyles } from "@material-ui/core";
 import { Email, Phone, LocationOn } from "@material-ui/icons";
-import withWidth from "@material-ui/core/withWidth";
 import { Element } from "react-scroll";
 import classNames from "classnames";
 import { BackgroundContainer } from "./Background";
@@ -33,11 +32,6 @@ const Header = withStyles({
           Contact
         </Typography>
       </Grid>
-      {/* <Grid item>
-        <Typography className={classes.subHeading} variant="subheading">
-          If you have any real estate related questions, feel free to call, email, or shoot a text my way.
-        </Typography>
-      </Grid> */}
     </Grid>
   );
 });
@@ -132,7 +126,7 @@ class ContactSection extends Component {
   }
 
   render() {
-    const { classes, width } = this.props;
+    const { classes } = this.props;
 
     return (
       <Element name="contact">
@@ -147,4 +141,4 @@ class ContactSection extends Component {
   }
 }
 
-export default withStyles(styles)(withWidth()(ContactSection));
+export default withStyles(styles)(ContactSection);
