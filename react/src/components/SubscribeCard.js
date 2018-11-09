@@ -265,7 +265,7 @@ const styles = theme => ({
   root: {
     height: "100%",
     width: "100%",
-    backgroundColor: "rgba(1,1,1,.7)",
+    backgroundColor: "rgba(1,1,1,.6)",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
