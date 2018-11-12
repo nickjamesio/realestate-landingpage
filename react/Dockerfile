@@ -1,4 +1,4 @@
-FROM node:8-alpine as build-stage
+FROM node:8-alpine
 
 RUN mkdir /app
 RUN chown node:node /app

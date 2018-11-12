@@ -9,3 +9,11 @@ services:
       - '8080:8080'
     volumes:
       - ~/Projects/mom_website/react:/app
+  api:
+    build:
+      context: ./flask
+      dockerfile: Dockerfile
+    ports:
+      - '5000:5000'
+    volumes:
+      - ~/Projects/mom_website/flask:/home/api
