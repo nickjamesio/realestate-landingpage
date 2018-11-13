@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import MaskedInput from 'react-text-mask';
 
 function PhoneNumberInput(props) {
-  const { inputRef, ...other } = props;
+  const {...other } = props;
 
   return (
     <MaskedInput
@@ -14,9 +14,5 @@ function PhoneNumberInput(props) {
     />
   );
 }
-
-PhoneNumberInput.propTypes = {
-  inputRef: PropTypes.func.isRequired,
-};
 
 export default PhoneNumberInput;

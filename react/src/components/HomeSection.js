@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Grid, Hidden, withStyles } from "@material-ui/core";
 import withWidth, { isWidthDown } from "@material-ui/core/withWidth";
 import { Element } from 'react-scroll';
-import Background from "../assets/images/house1Web.jpg";
+import Background from "../assets/images/house1.jpg";
 import Realtor from "../assets/images/businesslady.png";
 import SubscribeCard from "./SubscribeCard";
 import BackgrounImage from './Background';

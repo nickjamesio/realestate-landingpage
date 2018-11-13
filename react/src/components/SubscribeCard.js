@@ -13,6 +13,7 @@ import InputField from "./InputField";
 import SelectField from "./SelectField";
 import Tooltip from "./Tooltip";
 import PhoneNumberInput from "./PhoneNumberInput";
+import MaskedInput from "react-text-mask";
 
 const headerStyles = theme => ({
   root: {
@@ -130,8 +131,8 @@ const CardForm = withStyles(formStyles)(
       event.preventDefault();
 
       const { name, email, phone } = this.state;
-      const phoneRegex = new RegExp('^\([1-9]\d{2}\)\s?\d{3}-\d{4}$');
-      const emailRegex = new RegExp('^.+@.+\..+$');
+      const phoneRegex = /^\([1-9]\d{2}\)\s?\d{3}-\d{4}$/;
+      const emailRegex = /^.+@.+\..+$/;
 
       if (name.value.length === 0) {
         this.setState({name: {
@@ -154,7 +155,7 @@ const CardForm = withStyles(formStyles)(
         }});
       }
 
-      else if (emailRegex.test(email.vale)) {
+      else if (!emailRegex.test(email.value)) {
         this.setState({email: {
           ...email,
           error_message: "Invalid email",
@@ -162,7 +163,7 @@ const CardForm = withStyles(formStyles)(
         }});
       }
 
-      else if (phoneRegex.test(phone.vale)) {
+      else if (!phoneRegex.test(phone.value)) {
         this.setState({phone: {
           ...phone,
           error_message: "Invalid phone number",
@@ -189,11 +190,9 @@ const CardForm = withStyles(formStyles)(
             value={name.value}
             onChange={this.handleChange}
             className={classes.bottomBuffer}
-            inputRef={element => this.nameRef = element}
+            tooltipOpen={name.error}
+            tooltipMessage={name.error_message}
           />
-          <Tooltip placement="bottom-start" open={name.error} anchorEl={this.nameRef}>
-            {name.error_message}
-          </Tooltip>
 
           <InputField
             id="email"
@@ -204,28 +203,30 @@ const CardForm = withStyles(formStyles)(
             value={email.value}
             onChange={this.handleChange}
             className={classes.bottomBuffer}
-            inputRef={element => this.emailRef = element}
+            tooltipOpen={email.error}
+            tooltipMessage={email.error_message}
           />
-          <Tooltip placement="bottom-start" open={email.error} anchorEl={this.emailRef}>
-            {email.error_message}
-          </Tooltip>
-
-          <InputField
-            id="phone"
-            name="phone"
-            error={phone.error}
-            type="tel"
-            placeholder="Phone"
-            value={phone.value}
+          <MaskedInput
+            mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+            placeholderChar={'_'}
             onChange={this.handleChange}
-            className={classes.bottomBuffer}
-            inputComponent={PhoneNumberInput}
-            inputRef={element => this.phoneRef = element}
+            error={phone.error}
+            render={(ref, props) =>
+              <InputField
+                id="phone"
+                name="phone"
+                type="tel"
+                placeholder="Phone"
+                error={phone.error}
+                value={phone.value}
+                className={classes.bottomBuffer}
+                tooltipOpen={phone.error}
+                tooltipMessage={phone.error_message}
+                fieldRef={ref}
+                {...props}
+              />
+            }
           />
-          
-          <Tooltip placement="bottom-start" open={phone.error} anchorEl={this.phoneRef}>
-            {phone.error_message}
-          </Tooltip>
 
           <Grid container justify="space-between">
             <SelectField
