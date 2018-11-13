@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Input, withStyles } from "@material-ui/core";
+import { Input, FilledInput, OutlinedInput, withStyles } from "@material-ui/core";
 
 const styles = theme => ({
   root: {

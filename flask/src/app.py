@@ -1,24 +1,20 @@
 import json
-import re
-import logging
-from flask import Flask
 from flask import request
 from mailchimp3 import MailChimp
 from mailchimp3.mailchimpclient import MailChimpError
-from helpers import initialize_logging, get_missing_keys, get_empty_keys, check_email, check_phone, check_price, check_transaction
+from src import app
+from src.helpers import initialize_logging, get_missing_keys, get_empty_keys, check_email, check_phone, check_price, check_transaction
+from src.config import Config
 
-api_key = "34054e1fbd8462fa76a3a42b83b9283f-us19"
-user = "kingjames3"
-list_id = "14bfc390f7"
+
+api_key = app.config.get("MAILCHIMP_API_KEY")
+user = app.config.get("MAILCHIMP_USER")
+list_id = app.config.get("MAILCHIMP_LIST_ID")
 tags = {
     "buy": "buy",
     "sell": "sell",
     "investor": "investor"
 }
-
-app = Flask(__name__)
-initialize_logging()
-
 
 @app.route("/clients", methods=["POST"])
 def clients():

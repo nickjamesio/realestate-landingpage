@@ -54,6 +54,24 @@
       "jinja": true
     },
     {
+        "name": "Python: Flask moms site",
+        "type": "python",
+        "request": "launch",
+        "module": "flask",
+        "env": {
+          "FLASK_APP": "src/app.py",
+          "MAILCHIMP_API_KEY":"199ee9e672e5c9285750d04663af0263-us19",
+          "MAILCHIMP_USER":"kingjames3",
+          "MAILCHIMP_LIST_ID":"14bfc390f7"
+        },
+        "args": [
+          "run",
+          "--no-debugger",
+          "--no-reload"
+        ],
+        "jinja": true
+      },
+    {
       "name": "Python: Current File (External Terminal)",
       "type": "python",
       "request": "launch",

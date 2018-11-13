@@ -5,7 +5,7 @@ def initialize_logging():
     """
     Initilize logging for app
     """
-    fh = logging.FileHandler('/path/to/some/log.log')
+    fh = logging.FileHandler('/tmp/log.log')
     logger = logging.getLogger('mailchimp3.client')
     logger.addHandler(fh)
 

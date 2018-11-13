@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import {
   Button,
-  FormControl,
   Grid,
   MenuItem,
   Paper,
@@ -13,6 +12,7 @@ import classNames from "classnames";
 import InputField from "./InputField";
 import SelectField from "./SelectField";
 import Tooltip from "./Tooltip";
+import PhoneNumberInput from "./PhoneNumberInput";
 
 const headerStyles = theme => ({
   root: {
@@ -97,12 +97,14 @@ const CardForm = withStyles(formStyles)(
   class extends Component {
     constructor(props) {
       super(props);
+      const error_message = "Please fill out this field"; 
+
       this.state = {
-        name: {value: "", error: false},
-        email: {value: "", error: false},
-        phone: {value: "", error: false},
-        transaction: {value: "buy", error: false},
-        price: {value: "100,000", error: false}
+        name: {value: "", error: false, error_message},
+        email: {value: "", error: false, error_message},
+        phone: {value: "", error: false, error_message},
+        transaction: {value: "buy", error: false, error_message},
+        price: {value: "100,000", error: false, error_message}
       };
 
       this.nameRef = React.createRef();
@@ -114,11 +116,13 @@ const CardForm = withStyles(formStyles)(
     }
 
     handleChange(event) {
+      const fieldName = event.target.name;
+      const fieldValue = this.state[event.target.name];
+      fieldValue.value = event.target.value;
+      fieldValue.error = false;
+
       this.setState({
-        [event.target.name]: {
-          value: event.target.value,
-          error: false
-        }
+        [fieldName]: fieldValue
       });
     }
 
@@ -126,6 +130,8 @@ const CardForm = withStyles(formStyles)(
       event.preventDefault();
 
       const { name, email, phone } = this.state;
+      const phoneRegex = new RegExp('^\([1-9]\d{2}\)\s?\d{3}-\d{4}$');
+      const emailRegex = new RegExp('^.+@.+\..+$');
 
       if (name.value.length === 0) {
         this.setState({name: {
@@ -148,9 +154,21 @@ const CardForm = withStyles(formStyles)(
         }});
       }
 
-      // TODO
-      // Basic check for email
-      // Display popper
+      else if (emailRegex.test(email.vale)) {
+        this.setState({email: {
+          ...email,
+          error_message: "Invalid email",
+          error: true
+        }});
+      }
+
+      else if (phoneRegex.test(phone.vale)) {
+        this.setState({phone: {
+          ...phone,
+          error_message: "Invalid phone number",
+          error: true
+        }});
+      }
     }
 
     render() {
@@ -174,7 +192,7 @@ const CardForm = withStyles(formStyles)(
             inputRef={element => this.nameRef = element}
           />
           <Tooltip placement="bottom-start" open={name.error} anchorEl={this.nameRef}>
-            Please fill out this field.
+            {name.error_message}
           </Tooltip>
 
           <InputField
@@ -189,7 +207,7 @@ const CardForm = withStyles(formStyles)(
             inputRef={element => this.emailRef = element}
           />
           <Tooltip placement="bottom-start" open={email.error} anchorEl={this.emailRef}>
-            Please fill out this field.
+            {email.error_message}
           </Tooltip>
 
           <InputField
@@ -201,10 +219,12 @@ const CardForm = withStyles(formStyles)(
             value={phone.value}
             onChange={this.handleChange}
             className={classes.bottomBuffer}
+            inputComponent={PhoneNumberInput}
             inputRef={element => this.phoneRef = element}
           />
+          
           <Tooltip placement="bottom-start" open={phone.error} anchorEl={this.phoneRef}>
-            Please fill out this field.
+            {phone.error_message}
           </Tooltip>
 
           <Grid container justify="space-between">

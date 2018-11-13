@@ -3,7 +3,7 @@ import { Grid, Typography, withStyles } from "@material-ui/core";
 import withWidth, { isWidthDown } from "@material-ui/core/withWidth";
 import { Element } from "react-scroll";
 import classNames from "classnames";
-import Background from "../assets/images/house1.jpg";
+import Background from "../assets/images/house1Web.jpg";
 import PageContent from "./PageContent";
 import { BackgroundContainer } from "./Background";
 import Realtor from "../assets/images/Lady.jpg";
