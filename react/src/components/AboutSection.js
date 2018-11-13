@@ -165,7 +165,7 @@ class AboutSection extends Component {
 
     return (
       <Element name="about">
-        <BackgroundContainer justify="center" src={Background}>
+        <BackgroundContainer justify="center">
           <PageContent
             className={classes.content}
             justify="center"

@@ -10,7 +10,6 @@ function PhoneNumberInput(props) {
       {...other}
       mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
       placeholderChar={'\u2000'}
-      // render={(ref, props) => <input ref={inputRef} {...props} />}
     />
   );
 }

@@ -3,10 +3,10 @@ import { CssBaseline, MuiThemeProvider } from "@material-ui/core";
 import Navbar from "./Navbar";
 import Theme from "../Theme";
 import HomeSection from "./HomeSection";
-// import ServicesSection from "./ServicesSection";
-// import ReviewsSection from './ReviewsSection';
-// import AboutSection from "./AboutSection";
-// import ContactSection from "./ContactSection";
+import ServicesSection from "./ServicesSection";
+import ReviewsSection from './ReviewsSection';
+import AboutSection from "./AboutSection";
+import ContactSection from "./ContactSection";
 
 class App extends Component {
   render() {
@@ -14,13 +14,13 @@ class App extends Component {
       <MuiThemeProvider theme={Theme}>
         <CssBaseline />
         <Fragment>
-          {/* <Navbar /> */}
+          <Navbar />
 
           <HomeSection />
-          {/* <ServicesSection />
+          <ServicesSection />
           <ReviewsSection />
           <AboutSection />
-          <ContactSection /> */}
+          <ContactSection />
           
         </Fragment>
       </MuiThemeProvider>
