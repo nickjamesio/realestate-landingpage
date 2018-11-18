@@ -13,6 +13,7 @@ import InputField from "./InputField";
 import SelectField from "./SelectField";
 import ClickawayPopper from "./ClickawayPopper";
 import MaskedInput from "react-text-mask";
+import { postData } from "../utils/api";
 
 const headerStyles = theme => ({
   root: {
@@ -141,7 +142,7 @@ const CardForm = withStyles(formStyles)(
     handleSubmit(event) {
       event.preventDefault();
 
-      const { name, email, phone } = this.state;
+      const { name, email, phone, transaction, price } = this.state;
       const phoneRegex = /^\([1-9]\d{2}\)\s?\d{3}-\d{4}$/;
       const emailRegex = /^.+@.+\..+$/;
 
@@ -184,10 +185,24 @@ const CardForm = withStyles(formStyles)(
         });
       }
 
-      // Submit form data
-
-      // Open thank you message
-      this.setState({ thankOpen: true });
+      // Check for errors
+      if (!name.error && !email.error && !phone.error) {
+        const url = `http://${location.hostname}:5000/clients`;
+        const data = {
+          name: name.value,
+          email: email.value,
+          phone: phone.value,
+          transaction: transaction.value,
+          price: price.value
+        };
+        postData(url, data)
+          .then(response => {
+            if (response.status == 200) {
+              console.log(response) || this.setState({ thankOpen: true });
+            }
+          })
+          .catch(error => console.log(error));
+      }
     }
 
     render() {
@@ -200,7 +215,7 @@ const CardForm = withStyles(formStyles)(
 
       return (
         <Fragment>
-          <div ref={element => this.thankyouRef = element} />
+          <div ref={element => (this.thankyouRef = element)} />
           <form
             noValidate
             className={classes.root}
@@ -333,7 +348,8 @@ const CardForm = withStyles(formStyles)(
               Thank you!
             </Typography>
             <Typography variant="subheading">
-              I will will be in contact soon and I look forward to working with you.
+              I will will be in contact soon and I look forward to working with
+              you.
             </Typography>
           </ClickawayPopper>
         </Fragment>

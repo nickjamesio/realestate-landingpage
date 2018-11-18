@@ -10,7 +10,7 @@ def initialize_logging():
     logger.addHandler(fh)
 
 def check_price(price):
-    pass
+    return re.match(r"^[1-9]\d{0,2}(,\d{3})*$", price) != None
 
 def check_transaction(transaction):
     """
@@ -18,14 +18,12 @@ def check_transaction(transaction):
     :transaction: string
     :return: bool
     """
-    valid_values = ["buy", "sell"]
-    valid = False
-    for value in valid_values:
-        if value == transaction:
-            valid = True
-            break
-    return valid
-
+    valid_values = {
+        "buy": "buyer",
+        "sell": "seller",
+        "invest": "investor"
+    }
+    return transaction in valid_values
 
 def check_phone(phone):
     """
@@ -34,10 +32,7 @@ def check_phone(phone):
     :type phone: string
     :return: bool
     """
-    if re.match(r"^[0-9-()+]+$", phone):
-        return True
-    return False
-
+    return re.match(r"^\([1-9]\d{2}\)\s?\d{3}-\d{4}", phone) != None
 
 def check_email(email):
     """
@@ -48,10 +43,7 @@ def check_email(email):
     :type email: string
     :return: bool
     """
-    if re.match(r"^.+@.+\..+$", email):
-        return True
-    return False
-
+    return re.match(r"^.+@.+\..+$", email) != None
 
 def get_empty_keys(keys, data):
     """

@@ -10,15 +10,11 @@ from src.config import Config
 api_key = app.config.get("MAILCHIMP_API_KEY")
 user = app.config.get("MAILCHIMP_USER")
 list_id = app.config.get("MAILCHIMP_LIST_ID")
-tags = {
-    "buy": "buy",
-    "sell": "sell",
-    "investor": "investor"
-}
+
 
 @app.route("/clients", methods=["POST"])
 def clients():
-    response = {"message": ""}
+    response = {"message": "", "status": 200}
 
     if not request.is_json:
         response["message"] = "Missing 'application/json' header"
@@ -50,22 +46,29 @@ def clients():
         response["message"] = "Invalid 'transaction' value: '{}'".format(
             data["transaction"])
         response["status"] = 400
+    elif "price" in data and not check_price(data["price"]):
+        response["message"] = "Invalid 'price' value: '{}'".format(
+            data["price"])
+        response["status"] = 400
 
     # Assuming everything passed
     client = MailChimp(mc_api=api_key, mc_user=user)
     try:
-        request_data = {
-            "email_address": data["email"],
-            "status": "subscribed",
-            "merge_fields": {
-                "FNAME": data["name"],
-                "PHONE": data["phone"]
-            },
-            "ip_signup": request.remote_addr
-        }
-        request_data["tags"] = [data["transaction"]]
-        response = client.lists.members.create(
-            list_id=list_id, data=request_data)
+        response_data = None
+        if response["status"] == 200:
+            request_data = {
+                "email_address": data["email"],
+                "status": "subscribed",
+                "merge_fields": {
+                    "FNAME": data["name"],
+                    "PHONE": data["phone"],
+                    "PRICE": data["price"]
+                },
+                "ip_signup": request.remote_addr
+            }
+            request_data["tags"] = ["{}er".format(data["transaction"])]
+            response_data = client.lists.members.create(
+                list_id=list_id, data=request_data)
     except MailChimpError as e:
         errors = e.args[0]
         response["message"] = errors["detail"]
@@ -74,8 +77,9 @@ def clients():
         response["message"] = str(e)
         response["status"] = 500
     else:
-        response["message"] = "Successfully added '{}' to mail list".format(
-            data["email"])
-        response["status"] = 200
+        if response_data:
+            response["message"] = "Successfully added '{}' to mail list".format(
+                data["email"])
+            response["status"] = 200
     finally:
         return json.dumps(response)
