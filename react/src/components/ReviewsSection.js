@@ -11,7 +11,7 @@ import { mod } from "react-swipeable-views-core";
 import BackgroundImage from "./Background";
 import PageContent from "./PageContent";
 import Yelp from "../assets/images/Yelp.png";
-import Background from "../assets/images/wood-kitchenWeb.jpg";
+import Background from "../assets/images/Kitchen.jpg";
 import Dots from "material-ui-dots";
 
 const Header = withStyles({

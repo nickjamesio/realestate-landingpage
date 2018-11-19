@@ -118,7 +118,7 @@ const About = withStyles(theme => ({
           className={classes.social}
         >
           <Grid item className={classes.socialLink}>
-            <a target="_blank" href="https://google.com">
+            <a target="_blank" href="https://www.facebook.com/Listmyhouseforsale/">
               <img className="socialIcon" src={Facebook} />
             </a>
           </Grid>

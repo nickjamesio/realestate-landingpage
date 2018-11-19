@@ -5,13 +5,26 @@ services:
     build:
       context: ./react
       dockerfile: Dockerfile.prod
-    ports:
-      - '80:80'
+    expose:
+      - '80'
+    environment:
+       VIRTUAL_HOST: homeswithaudrey.local,www.homeswithaudrey.local
+       VIRTUAL_PORT: 80
+
   api:
     build:
       context: ./flask
       dockerfile: Dockerfile.prod
-    ports:
-      - '5000:5000'
+    expose:
+      - '80'
     env_file:
       - flask/.prod.env
+    environment:
+       VIRTUAL_HOST: api.homeswithaudrey.local,www.api.homeswithaudrey.local
+       VIRTUAL_PORT: 80
+
+
+networks:
+    default:
+       external:
+         name: nginx-proxy

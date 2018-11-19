@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Grid, Hidden, withStyles } from "@material-ui/core";
 import withWidth, { isWidthDown } from "@material-ui/core/withWidth";
 import { Element } from 'react-scroll';
-import Background from "../assets/images/house1.jpg";
-import Realtor from "../assets/images/businesslady.png";
+import Background from "../assets/images/House.jpg";
+import Realtor from "../assets/images/BusinessLadyWeb.png";
 import SubscribeCard from "./SubscribeCard";
 import BackgrounImage from './Background';
 import PageContent from './PageContent';
@@ -18,7 +18,7 @@ const styles = theme => ({
     }
   },
   realtorContainer: {
-    alignSelf: "end",
+    alignSelf: "flex-end",
     height: "600px",
   },
   realtor: {
