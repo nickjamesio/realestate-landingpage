@@ -13,7 +13,7 @@ import InputField from "./InputField";
 import SelectField from "./SelectField";
 import ClickawayPopper from "./ClickawayPopper";
 import MaskedInput from "react-text-mask";
-import { postData } from "../utils/api";
+import { addToMailList } from "../utils/api";
 
 const headerStyles = theme => ({
   root: {
@@ -187,7 +187,6 @@ const CardForm = withStyles(formStyles)(
 
       // Check for errors
       if (!name.error && !email.error && !phone.error) {
-        const url = `http://${location.hostname}:5000/clients`;
         const data = {
           name: name.value,
           email: email.value,
@@ -195,7 +194,7 @@ const CardForm = withStyles(formStyles)(
           transaction: transaction.value,
           price: price.value
         };
-        postData(url, data)
+        addToMailList(data)
           .then(response => {
             if (response.status == 200) {
               console.log(response) || this.setState({ thankOpen: true });
