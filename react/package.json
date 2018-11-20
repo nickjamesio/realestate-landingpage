@@ -1,8 +1,12 @@
 {
-  "name": "react_router_lesson",
+  "name": "realestate_landing_page",
   "version": "1.0.0",
-  "description": "learning react router with tyler mcginnis",
+  "description": "Real estate lead generation page",
   "main": "index.js",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/nickjamesio/realestate-landingpage.git"
+  },
   "babel": {
     "presets": [
       "@babel/preset-env",
