@@ -81,6 +81,9 @@ const formStyles = theme => ({
     marginBottom: "2em",
     height: "2.5em"
   },
+  transaction: {
+    minWidth: "80px"
+  },
   price: {
     flexGrow: 1,
     marginLeft: "2em"
@@ -287,7 +290,7 @@ const CardForm = withStyles(formStyles)(
                 name="transaction"
                 value={transaction.value}
                 onChange={this.handleChange}
-                className={classes.bottomBuffer}
+                className={classNames(classes.bottomBuffer, classes.transaction)}
               >
                 {native =>
                   native === true

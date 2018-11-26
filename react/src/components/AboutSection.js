@@ -5,7 +5,7 @@ import { Element } from "react-scroll";
 import classNames from "classnames";
 import PageContent from "./PageContent";
 import { BackgroundContainer } from "./Background";
-import Realtor from "../assets/images/Lady.jpg";
+import Realtor from "../assets/images/MomSitting.png";
 import Facebook from "../assets/images/Facebook.png";
 import Twitter from "../assets/images/Twitter.png";
 import Instagram from "../assets/images/Instagram.png";
@@ -35,8 +35,8 @@ const Header = withStyles({
 
 const About = withStyles(theme => ({
   image: {
-    height: "auto",
-    width: "90%"
+    height: "350px",
+    width: "auto"
   },
   socialLink: {
     marginRight: theme.spacing.unit * 2,
@@ -123,12 +123,12 @@ const About = withStyles(theme => ({
             </a>
           </Grid>
           <Grid item className={classes.socialLink}>
-            <a target="_blank" href="https://google.com">
+            <a target="_blank" href="https://twitter.com/RealtorAudrey1">
               <img className="socialIcon" src={Twitter} />
             </a>
           </Grid>
           <Grid item className={classes.socialLink}>
-            <a target="_blank" href="https://google.com">
+            <a target="_blank" href="https://www.instagram.com/homeswithaudrey">
               <img className="socialIcon" src={Instagram} />
             </a>
           </Grid>
