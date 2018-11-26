@@ -1,2 +1,2 @@
-# react-webpack-starter
-Basic starter project for using react, react-router-dom, babel, webpack 4, and docker
+# Simple real estate landing page
+Created a lead generation landing page for my mom' real estate business
