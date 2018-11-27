@@ -119,26 +119,19 @@ const styles = theme => ({
   }
 });
 
-class ContactSection extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+const ContactSection = props => {
+  const { classes } = props;
 
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <Element name="contact">
-        <BackgroundContainer justify="center" className={classes.background}>
-          <PageContent className={classes.content} justify="center">
-            <Header className={classes.headingBuffer} />
-            <ContactOptions />
-          </PageContent>
-        </BackgroundContainer>
-      </Element>
-    );
-  }
-}
+  return (
+    <Element name="contact">
+      <BackgroundContainer justify="center" className={classes.background}>
+        <PageContent className={classes.content} justify="center">
+          <Header className={classes.headingBuffer} />
+          <ContactOptions />
+        </PageContent>
+      </BackgroundContainer>
+    </Element>
+  );
+};
 
 export default withStyles(styles)(ContactSection);

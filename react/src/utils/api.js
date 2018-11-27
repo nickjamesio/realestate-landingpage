@@ -1,6 +1,5 @@
-const URL = `http://api.${location.hostname}/clients`;
-
 export function addToMailList(data) {
+  const URL = `http://api.${location.hostname}/clients`;
   return postData(URL, data);
 }
 

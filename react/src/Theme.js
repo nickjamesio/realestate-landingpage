@@ -20,6 +20,9 @@ const Theme = createMuiTheme({
       }
     },
   },
+  typography: {
+    useNextVariants: true,
+  },
   appWidth: {
     width: '100%',
     maxWidth: 1280,

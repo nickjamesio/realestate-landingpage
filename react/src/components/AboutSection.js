@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Grid, Typography, withStyles } from "@material-ui/core";
-import withWidth, { isWidthDown } from "@material-ui/core/withWidth";
 import { Element } from "react-scroll";
 import classNames from "classnames";
 import PageContent from "./PageContent";
@@ -161,7 +160,7 @@ class AboutSection extends Component {
     this.state = {};
   }
   render() {
-    const { classes, width } = this.props;
+    const { classes } = this.props;
 
     return (
       <Element name="about">
@@ -181,4 +180,4 @@ class AboutSection extends Component {
   }
 }
 
-export default withStyles(styles)(withWidth()(AboutSection));
+export default withStyles(styles)(AboutSection);

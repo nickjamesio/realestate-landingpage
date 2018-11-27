@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Grid, Hidden, withStyles } from "@material-ui/core";
-import withWidth, { isWidthDown } from "@material-ui/core/withWidth";
 import { Element } from 'react-scroll';
 import Background from "../assets/images/House.jpg";
 import Realtor from "../assets/images/MomStanding.png";
@@ -10,6 +9,12 @@ import PageContent from './PageContent';
 
 const styles = theme => ({
   content: {
+    justifyContent: "center",
+    [theme.breakpoints.up("md")]: {
+      justifyContent: "space-between",
+    }
+  },
+  subscribeCard: {
     paddingTop: '40px',
     paddingBottom: '40px',
     [theme.breakpoints.up('md')]: {
@@ -33,21 +38,19 @@ class HomeSection extends Component {
     this.state = {};
   }
   render() {
-    const { classes, width } = this.props;
+    const { classes } = this.props;
 
     return (
       <Element name="home">
         <BackgrounImage justify="center" src={Background}>
-          <PageContent
-            justify={ isWidthDown('sm', width) ? "center" : "space-between"}
-          >
+          <PageContent className={classes.content}>
             <Hidden smDown>
               <Grid item className={classes.realtorContainer}>
                 <img src={Realtor} className={classes.realtor} />
               </Grid>
             </Hidden>
             <Grid item>
-              <SubscribeCard className={classes.content} />
+              <SubscribeCard className={classes.subscribeCard} />
             </Grid>
           </PageContent>
         </BackgrounImage>
@@ -56,4 +59,4 @@ class HomeSection extends Component {
   }
 }
 
-export default withStyles(styles)(withWidth()(HomeSection));
+export default withStyles(styles)(HomeSection);

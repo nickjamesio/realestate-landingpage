@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Grid, Typography, withStyles } from "@material-ui/core";
-import withWidth, { isWidthDown } from "@material-ui/core/withWidth";
 import { Element } from "react-scroll";
 import {
   PhotoCamera,
@@ -108,10 +107,12 @@ const styles = theme => ({
   content: {
     paddingTop: "40px",
     paddingBottom: "40px",
+    flexDirection: "column",
     [theme.breakpoints.up("md")]: {
       paddingTop: "80px",
-      paddingBottom: "80px"
-    }
+      paddingBottom: "80px",
+      flexDirection: "row",
+    },
   },
   headingBuffer: {
     marginBottom: theme.spacing.unit * 4,
@@ -176,7 +177,6 @@ class ServicesSection extends Component {
         <BackgroundContainer justify="center">
           <PageContent
             className={classes.content}
-            direction={isWidthDown("sm", width) ? "column" : "row"}
             justify="center"
           >
             <Header className={classes.headingBuffer} />
@@ -197,4 +197,4 @@ class ServicesSection extends Component {
   }
 }
 
-export default withStyles(styles)(withWidth()(ServicesSection));
+export default withStyles(styles)(ServicesSection);

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
-import { CssBaseline, MuiThemeProvider } from "@material-ui/core";
+import { CssBaseline } from "@material-ui/core";
+import { hot } from 'react-hot-loader'
 import Navbar from "./Navbar";
-import Theme from "../Theme";
 import HomeSection from "./HomeSection";
 import ServicesSection from "./ServicesSection";
 import ReviewsSection from './ReviewsSection';
@@ -11,27 +11,29 @@ import ReactGA from 'react-ga';
 
 class App extends Component {
   componentDidMount() {
+    const jssStyles = document.getElementById('jss-server-side')
+    if (jssStyles && jssStyles.parentNode) {
+      jssStyles.parentNode.removeChild(jssStyles)
+    }
+
     ReactGA.initialize('UA-126977160-2');
     ReactGA.pageview(window.location.pathname + window.location.search);
   }
 
   render() {
     return (
-      <MuiThemeProvider theme={Theme}>
+      <Fragment>
         <CssBaseline />
-        <Fragment>
-          <Navbar />
+        <Navbar />
 
-          <HomeSection />
-          <ServicesSection />
-          <ReviewsSection />
-          <AboutSection />
-          <ContactSection />
-          
-        </Fragment>
-      </MuiThemeProvider>
+        <HomeSection />
+        <ServicesSection />
+        <ReviewsSection />
+        <AboutSection />
+        <ContactSection />
+      </Fragment>
     );
   }
 }
 
-export default App;
+export default hot(module)(App);
