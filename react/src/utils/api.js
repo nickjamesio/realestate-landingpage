@@ -1,5 +1,5 @@
 export function addToMailList(data) {
-  const URL = `http://api.${location.hostname}/clients`;
+  const URL = `https://api.homeswithaudrey.com/clients`;
   return postData(URL, data);
 }
 
