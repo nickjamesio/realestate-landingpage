@@ -93,7 +93,7 @@ const Service = withStyles(theme => ({
         <Typography
           color="secondary"
           className={classes.description}
-          variant="subheading"
+          variant="subtitle1"
           align="center"
         >
           {children}

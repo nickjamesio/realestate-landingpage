@@ -90,7 +90,7 @@ const ContactOptions = withStyles(theme => ({
             ? <Icon className={classes.icon} />
             : <a target="_blank" href={link}><Icon className={classNames(classes.icon, "clickable")} /></a>
           }
-          <Typography className={classes.text} variant="subheading">
+          <Typography className={classes.text} variant="subtitle1">
             {text}
           </Typography>
         </Grid>

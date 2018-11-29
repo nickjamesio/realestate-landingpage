@@ -93,7 +93,7 @@ const About = withStyles(theme => ({
         <Typography
           className="paragraph"
           color="secondary"
-          variant="subheading"
+          variant="subtitle1"
         >
           Audrey is a Bay Area native and licensed Realtor with Better Homes and
           Gardens Real Estate working out of the Oakland, California, Grandlake
@@ -103,7 +103,7 @@ const About = withStyles(theme => ({
         <Typography
           className="paragraph"
           color="secondary"
-          variant="subheading"
+          variant="subtitle1"
         >
           She has represented both buyers and sellers in all parts of Alameda
           and Contra Costa County, and specializes in first-time home buyers,

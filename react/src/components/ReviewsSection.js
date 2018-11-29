@@ -124,7 +124,7 @@ const Review = withStyles(theme => ({
           <FormatQuote className={classNames("last", classes.quote)} />
         </Grid>
         <Grid item>
-          <Typography variant="subheading" className={classes.date}>
+          <Typography variant="subtitle1" className={classes.date}>
             {date}
           </Typography>
         </Grid>

@@ -42,7 +42,6 @@ ClickawayPopper.defaultProps = {
 };
 
 ClickawayPopper.propTypes = {
-  anchorEl: PropTypes.oneOf([PropTypes.func, PropTypes.object]),
   classes: PropTypes.object.isRequired,
   children: PropTypes.node.isRequired,
   handleClickAway: PropTypes.func.isRequired,

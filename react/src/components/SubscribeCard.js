@@ -55,7 +55,7 @@ const CardHeader = withStyles(headerStyles)(({ classes }) => (
     <Typography
       className={classNames(classes.subHeading, classes.white)}
       align="center"
-      variant="subheading"
+      variant="subtitle1"
     >
       Let me help you with your next real estate transaction
     </Typography>
@@ -349,7 +349,7 @@ const CardForm = withStyles(formStyles)(
             <Typography className="heading" variant="h4" align="center">
               Thank you!
             </Typography>
-            <Typography variant="subheading">
+            <Typography variant="subtitle1">
               I will will be in contact soon and I look forward to working with
               you.
             </Typography>

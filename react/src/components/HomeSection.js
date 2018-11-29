@@ -47,7 +47,6 @@ class HomeSection extends Component {
             <Hidden
               smDown
               implementation="css"
-              initialWidth="md"
               className={classes.realtorContainer}
             >
               <img src={Realtor} className={classes.realtor} />
