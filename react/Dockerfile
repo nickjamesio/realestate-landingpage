@@ -4,7 +4,7 @@ RUN mkdir /app
 RUN chown node:node /app
 
 WORKDIR /app
-EXPOSE 8080
+EXPOSE 3000
 
 USER node
 CMD ["npm", "run", "start"]

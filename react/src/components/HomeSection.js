@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Grid, Hidden, withStyles } from "@material-ui/core";
 import { Element } from "react-scroll";
-import Background from "../assets/images/House.jpg";
-import Realtor from "../assets/images/MomStanding.png";
+import Background from "../../assets/images/House.jpg";
+import Realtor from "../../assets/images/MomStanding.png";
 import SubscribeCard from "./SubscribeCard";
 import BackgrounImage from "./Background";
 import PageContent from "./PageContent";

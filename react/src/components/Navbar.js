@@ -11,7 +11,7 @@ import {
 import { Link } from "react-scroll";
 import Logo from "./Logo";
 import HamburgerMenuButton from "./HamburgerMenuButton";
-import BetterHomes from "../assets/images/BetterHomesWeb.png";
+import BetterHomes from "../../assets/images/BetterHomesWeb.png";
 import PageContent from "./PageContent";
 
 const menuList = [

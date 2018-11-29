@@ -6,12 +6,12 @@ services:
       context: ./react
       dockerfile: Dockerfile
     expose:
-      - '8080'
+      - '3000'
     volumes:
       - ~/Projects/mom_website/react:/app
     environment:
        VIRTUAL_HOST: homeswithaudrey.local,www.homeswithaudrey.local
-       VIRTUAL_PORT: 8080
+       VIRTUAL_PORT: 3000
 
   api:
     build:

@@ -53,6 +53,15 @@ export default {
             <meta name="google-site-verification" content="Yy8lB4mZKNB5-wKAD-vC-RrwtGl5lX2O2yitkQdwWIk" />
             <meta charSet="UTF-8" />
             <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"/>
+            
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:site" content="@RealtorAudrey1" />
+            <meta name="twitter:title" content="Homes With Audrey" />
+            <meta name="twitter:description" content="Real estate transactions made easy." />
+            <meta name="twitter:image" content="https://homeswithaudrey.com/static/OpenGraph.png" />
+            <meta property="og:type" content="profile" />
+            <meta property="og:url" content="https://homeswithaudrey.com" />
+            <meta property="og:image" content="https://homeswithaudrey.com/static/OpenGraph.png" />
             <link
               href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
               rel="stylesheet"
@@ -66,4 +75,7 @@ export default {
       )
     }
   },
+  devServer: {
+      host: '0.0.0.0'
+  }
 }

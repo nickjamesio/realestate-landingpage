@@ -4,10 +4,10 @@ import { Element } from "react-scroll";
 import classNames from "classnames";
 import PageContent from "./PageContent";
 import { BackgroundContainer } from "./Background";
-import Realtor from "../assets/images/MomSitting.png";
-import Facebook from "../assets/images/Facebook.png";
-import Twitter from "../assets/images/Twitter.png";
-import Instagram from "../assets/images/Instagram.png";
+import Realtor from "../../assets/images/MomSitting.png";
+import Facebook from "../../assets/images/Facebook.png";
+import Twitter from "../../assets/images/Twitter.png";
+import Instagram from "../../assets/images/Instagram.png";
 
 const Header = withStyles({
   root: {}
