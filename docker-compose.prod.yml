@@ -30,7 +30,7 @@ services:
     environment:
       VIRTUAL_HOST: api.homeswithaudrey.com,www.api.homeswithaudrey.com
       VIRTUAL_PORT: 80
-      LETSENCRYPT_HOST: homeswithaudrey.com, www.homeswithaudrey.com
+      LETSENCRYPT_HOST: api.homeswithaudrey.com, www.api.homeswithaudrey.com
       LETSENCRYPT_EMAIL: thenickjames@gmail.com
 
 
