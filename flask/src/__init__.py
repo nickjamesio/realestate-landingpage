@@ -10,7 +10,7 @@ app.config.from_object(Config)
 
 # Enable CORS
 if app.env == 'production':
-    CORS(app, origins=["https://homeswithaudrey.com"])
+    CORS(app, origins=["https://homeswithaudrey.com", "https://www.homeswithaudrey.com"])
 else:
     CORS(app)
 
