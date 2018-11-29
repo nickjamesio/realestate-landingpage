@@ -6,6 +6,8 @@ services:
       context: ./react
       dockerfile: Dockerfile.prod
     restart: unless-stopped
+    logging:
+      driver: syslog
     expose:
       - '80'
     environment:
@@ -21,6 +23,8 @@ services:
     expose:
       - '80'
     restart: unless-stopped
+    logging:
+      driver: syslog
     env_file:
       - flask/.prod.env
     environment:
